@@ -1,0 +1,14 @@
+version: '3.9'
+services:
+  climate_map:
+    build:
+      context: ./src
+      dockerfile: Dockerfile
+    image: climate_map
+    container_name: climate_map
+    restart: always
+    command: tail -f /dev/null
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
