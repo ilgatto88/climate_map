@@ -1,3 +1,21 @@
 # climATe Map
 
 A web application for visualizing Austrian climate data
+
+For development in a Docker container, install the extensions:
+
+- ESLint
+- Prettier
+- GitHub Copilot (optional)
+
+## Installation
+
+`npm install -g npm@latest`: Update npm to the latest version
+`npm i eslint`: Install ESLint
+`npm install --save-dev --save-exact prettier`: Install Prettier
+`npm install --save-dev eslint-config-prettier`: Install Prettier ESLint configuration
+`chown -R $USER:$GROUP /app`: Use this inside the container to fix permission errors during development
+
+`npm install leaflet`: Install Leaflet
+`npm install react-leaflet`: Install React Leaflet
+`npm install -D @types/leaflet`: Install Leaflet types
