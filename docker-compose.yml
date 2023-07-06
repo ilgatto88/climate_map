@@ -2,7 +2,7 @@ version: '3.9'
 services:
   climate_map:
     build:
-      context: ./src
+      context: .
       dockerfile: Dockerfile
     image: climate_map
     container_name: climate_map
