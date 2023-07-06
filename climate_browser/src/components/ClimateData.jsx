@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   CategoryScale,
@@ -36,27 +36,27 @@ ChartJS.register(
   backgroundColorPlugin
 );
 
-export default function ClimateData({ municipalityId, parameter, scenario }) {
+export default function ClimateData({ municipalityId, scenario }) {
   const [municipalityData, setMunicipalityData] = useState([]);
 
   const API_ENDPOINT = `http://127.0.0.1:8000/api/v1/municipalitydata/${municipalityId}`;
 
   useEffect(() => {
     fetchData(API_ENDPOINT).then((data) => setMunicipalityData(data));
-  }, []);
+  }, [municipalityId, scenario]);
 
   if (municipalityData.length === 0) {
     return <div>Loading...</div>;
   }
 
-  let chartData = prepareLineDiagramData(
+  const chartData = prepareLineDiagramData(
     municipalityData.meta.analysisTimeRange,
     municipalityData.historical.rawData,
     municipalityData.meta.ensembleTimeRange,
     municipalityData.ensemble[scenario]
   );
 
-  let chartOptions = getChartOptions();
+  const chartOptions = getChartOptions();
 
   return <Line options={chartOptions} data={chartData} />;
 }
