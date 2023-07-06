@@ -1,10 +1,24 @@
 import "leaflet/dist/leaflet.css";
-import Map from "./components/MapContainerComponent";
-// import ClimateData from "./components/ClimateData";
+import React, { useState } from "react";
+import ClimateData from "./components/ClimateData";
+import Map from "./components/MapContainer";
+import "./styles/App.css";
 
 function App() {
-  // return <ClimateData municipalityId={10101} parameter="tm" scenario="rcp26" />;
-  return <Map position={[48.32089, 16.14196]} />;
+  const [municipalityId, setMunicipalityId] = useState(10101);
+
+  const handleMunicipalityIdChange = (id) => {
+    setMunicipalityId(id);
+  };
+
+  return (
+    <div className="content">
+      <Map onMunicipalityIdChange={handleMunicipalityIdChange} />
+      <div className="line-chart">
+        <ClimateData municipalityId={municipalityId} scenario="rcp85" />
+      </div>
+    </div>
+  );
 }
 
 export default App;
