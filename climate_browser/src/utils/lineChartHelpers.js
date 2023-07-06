@@ -1,64 +1,64 @@
 const TENSION = 0.3;
 
 export function getChartOptions() {
-    let delayed = false;
+  let delayed = false;
 
-    const chartOptions = {
+  const chartOptions = {
     responsive: true,
     hitRadius: 10,
     hoverRadius: 5,
     animation: {
-        onComplete: () => {
+      onComplete: () => {
         delayed = true;
-        },
-        delay: (context) => {
+      },
+      delay: (context) => {
         let delay = 0;
         if (context.type === "data" && context.mode === "default" && !delayed) {
-            delay = context.dataIndex * 5;
+          delay = context.dataIndex * 5;
         }
         return delay;
-        },
+      },
     },
     interaction: {
-        mode: "index",
+      mode: "index",
     },
     tooltips: {
-        enabled: true,
-        mode: "index",
-        usePointStyle: true,
+      enabled: true,
+      mode: "index",
+      usePointStyle: true,
     },
     scales: {
-        x: {
+      x: {
         grid: {
-            display: false,
+          display: false,
         },
         title: {
-            display: true,
-            text: "Year",
+          display: true,
+          text: "Year",
         },
         display: true,
-        },
-        y: {
+      },
+      y: {
         title: {
-            display: true,
-            text: "Mean temperature (°C)",
-            fontSize: 14,
+          display: true,
+          text: "Mean temperature (°C)",
+          fontSize: 14,
         },
-        },
+      },
     },
     hover: {
-        mode: "nearest",
-        axis: "x",
-        intersect: false,
-        includeInvisible: true,
+      mode: "nearest",
+      axis: "x",
+      intersect: false,
+      includeInvisible: true,
     },
     plugins: {
-        background: {
+      background: {
         color: "#FFFFFF",
-        },
-        annotation: {
+      },
+      annotation: {
         annotations: {
-            box1: {
+          box1: {
             drawTime: "beforeDatasetsDraw",
             type: "box",
             xMin: 75,
@@ -67,147 +67,151 @@ export function getChartOptions() {
             yMax: 13,
             backgroundColor: "rgba(201, 204, 199,0.5)",
             borderColor: "rgba(230,97,79,0.0)",
-            },
-            label1: {
+          },
+          label1: {
             type: "label",
             xValue: 90,
             yValue: 12.9,
             backgroundColor: "rgba(245,245,245, 0.0)",
             content: ["2036-2065"],
             font: {
-                size: 12,
+              size: 12,
             },
-            },
+          },
         },
-        },
-        legend: {
+      },
+      legend: {
         position: "bottom",
         labels: {
-            filter: function (item, chart) {
+          // eslint-disable-next-line no-unused-vars
+          filter(item, chart) {
             return !item.text.includes("remove");
-            },
+          },
         },
-        },
-        title: {
+      },
+      title: {
         display: false,
         text: "Climate Data",
-        },
+      },
     },
-    };
-    return chartOptions;
+  };
+  return chartOptions;
 }
 
 export function insertNullValues(data, timeRange, startYear, endYear) {
-    const output = [];
-    let timeRangeIndex = 0;
+  const output = [];
+  let timeRangeIndex = 0;
 
-    for (let year = startYear; year <= endYear; year++) {
-      if (year === timeRange[timeRangeIndex]) {
-        output.push(data[timeRangeIndex]);
-        timeRangeIndex++;
-      } else {
-        output.push(null);
-      }
+  for (let year = startYear; year <= endYear; year++) {
+    if (year === timeRange[timeRangeIndex]) {
+      output.push(data[timeRangeIndex]);
+      timeRangeIndex++;
+    } else {
+      output.push(null);
     }
-
-    return output;
   }
 
+  return output;
+}
+
 export async function fetchData(API_ENDPOINT) {
-    try {
-        const response = await fetch(API_ENDPOINT);
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error("Error fetching data:", error);
-        return null;
-    }
+  try {
+    const response = await fetch(API_ENDPOINT);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return null;
+  }
 }
 
 export function range(start, end) {
-    return Array(end - start + 1)
-      .fill()
-      .map((_, idx) => start + idx);
-  }
+  return Array(end - start + 1)
+    .fill()
+    .map((_, idx) => start + idx);
+}
 
+export function prepareLineDiagramData(
+  analysisTimeRange,
+  historicalRawData,
+  ensembleTimeRange,
+  ensembleData
+) {
+  const historicalData = insertNullValues(
+    historicalRawData,
+    analysisTimeRange,
+    1961,
+    2100
+  );
+  const rcp26Median = insertNullValues(
+    ensembleData.statistics1D.median,
+    ensembleTimeRange,
+    1961,
+    2100
+  );
+  const rcp26Lower = insertNullValues(
+    ensembleData.statistics1D.lowerPercentile,
+    ensembleTimeRange,
+    1961,
+    2100
+  );
+  const rcp26Upper = insertNullValues(
+    ensembleData.statistics1D.upperPercentile,
+    ensembleTimeRange,
+    1961,
+    2100
+  );
 
-export function prepareLineDiagramData(analysisTimeRange, historicalRawData, ensembleTimeRange, ensembleData) {
-
-    const historicalData = insertNullValues(
-        historicalRawData,
-        analysisTimeRange,
-        1961,
-        2100
-      );
-      const rcp26Median = insertNullValues(
-        ensembleData.statistics1D.median,
-        ensembleTimeRange,
-        1961,
-        2100
-      );
-      const rcp26Lower = insertNullValues(
-        ensembleData.statistics1D.lowerPercentile,
-        ensembleTimeRange,
-        1961,
-        2100
-      );
-      const rcp26Upper = insertNullValues(
-        ensembleData.statistics1D.upperPercentile,
-        ensembleTimeRange,
-        1961,
-        2100
-      );
-
-    let data = {
-      labels: range(1961, 2100),
-      datasets: [
-        {
-          label: "Historical",
-          borderColor: "#A99D9D",
-          backgroundColor: "#A99D9D",
-          data: historicalData,
-          fill: false,
-          pointRadius: 1,
-          borderWidth: 2,
-          tension: TENSION,
+  const data = {
+    labels: range(1961, 2100),
+    datasets: [
+      {
+        label: "Historical",
+        borderColor: "#A99D9D",
+        backgroundColor: "#A99D9D",
+        data: historicalData,
+        fill: false,
+        pointRadius: 1,
+        borderWidth: 2,
+        tension: TENSION,
+      },
+      {
+        label: "RCP 2.6",
+        backgroundColor: "#AEC99E",
+        borderColor: "#AEC99E",
+        data: rcp26Median,
+        fill: false,
+        pointRadius: 1,
+        borderWidth: 2,
+        tension: TENSION,
+      },
+      {
+        label: "Upper percentile",
+        borderColor: "rgba(255, 255, 255, 0.0)",
+        data: rcp26Upper,
+        fill: false,
+        pointRadius: 1,
+        tension: TENSION,
+      },
+      {
+        label: "Lower percentile",
+        backgroundColor: (context) => {
+          const { ctx } = context.chart;
+          const gradient = ctx.createLinearGradient(0, 0, 0, 250);
+          gradient.addColorStop(0, "rgba(174,201,158,1)");
+          gradient.addColorStop(1, "rgba(226,238,219,1)");
+          return gradient;
         },
-        {
-          label: "RCP 2.6",
-          backgroundColor: "#AEC99E",
-          borderColor: "#AEC99E",
-          data: rcp26Median,
-          fill: false,
-          pointRadius: 1,
-          borderWidth: 2,
-          tension: TENSION,
-        },
-        {
-          label: "Upper percentile",
-          borderColor: "rgba(255, 255, 255, 0.0)",
-          data: rcp26Upper,
-          fill: false,
-          pointRadius: 1,
-          tension: TENSION,
-        },
-        {
-          label: "Lower percentile",
-          backgroundColor: (context) => {
-            const ctx = context.chart.ctx;
-            const gradient = ctx.createLinearGradient(0, 0, 0, 250);
-            gradient.addColorStop(0, "rgba(174,201,158,1)");
-            gradient.addColorStop(1, "rgba(226,238,219,1)");
-            return gradient;
-          },
-          borderColor: "rgba(255, 255, 255, 0.0)",
-          data: rcp26Lower,
-          fill: "-1",
-          pointRadius: 1,
-          tension: TENSION,
-        },
-      ],
-    };
-    return data;
-  }
+        borderColor: "rgba(255, 255, 255, 0.0)",
+        data: rcp26Lower,
+        fill: "-1",
+        pointRadius: 1,
+        tension: TENSION,
+      },
+    ],
+  };
+  return data;
+}
 
 export const backgroundColorPlugin = {
   id: "background",
