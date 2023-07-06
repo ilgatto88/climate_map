@@ -1,11 +1,7 @@
 import React from "react";
 import { MapContainer, TileLayer, WMSTileLayer } from "react-leaflet";
 
-interface MapContainerProps {
-  position: [number, number];
-}
-
-const Map: React.FC<MapContainerProps> = ({ position }) => {
+const Map = ({ position }) => {
   return (
     <MapContainer
       style={{ height: "100vh", width: "100%", zIndex: 0 }}
