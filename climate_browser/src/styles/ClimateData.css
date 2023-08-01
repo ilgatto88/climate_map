@@ -1,0 +1,74 @@
+:root {
+     --blue: rgb(61, 180, 229);
+     --grey: rgba(99, 88, 88, 0.8);
+     --white: rgb(255, 255, 255);
+     --yellow: rgb(254, 181, 25);
+}
+
+
+.offcanvas.offcanvas-end {
+     width: 450px;
+     background-color: var(--grey);
+     color: var(--white);
+     border-color: var(--white);
+}
+
+.offcanvas-header {
+     padding-bottom: 0;
+}
+
+.text-main-name {
+     font-size: 1.5rem;
+     color: var(--blue);
+     padding-bottom: 0;
+     margin-bottom: 0;
+}
+
+.text-main-value {
+     font-size: 2rem;
+     color: var(--yellow);
+}
+
+.text-scenario {
+     font-size: 1.2rem;
+     color: var(--white);
+}
+
+.location-data {
+     display: flex;
+     flex-direction: row;
+     gap: 20px;
+}
+
+.value-historical,
+.value-ensemble {
+     color: var(--yellow);
+     font-size: 2.5rem;
+     font-weight: 700;
+}
+
+.value-ensemble {
+     display: inline-block;
+     text-align: right;
+}
+
+.time-range {
+     font-weight: 200;
+}
+
+.prehead {
+     color: var(--white);
+     font-size: 1.2rem;
+     font-weight: 200;
+     padding-bottom: 0;
+     margin-bottom: 0;
+}
+
+.value-change {
+     padding-top: 0;
+     margin-top: -10px;
+}
+
+.btn-close {
+     background-color: var(--white);
+}
