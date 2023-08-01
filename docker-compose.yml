@@ -1,11 +1,11 @@
 version: '3.9'
 services:
-  climate_map:
+  climate_browser:
     build:
       context: .
       dockerfile: Dockerfile
-    image: climate_map
-    container_name: climate_map
+    image: climate_browser
+    container_name: climate_browser
     restart: always
     command: tail -f /dev/null
     ports:
