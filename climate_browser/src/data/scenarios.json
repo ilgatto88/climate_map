@@ -1,0 +1,14 @@
+{
+    "rcp26": {
+        "primaryName": "Low Carbon",
+        "secondaryName": "Less climate change",
+        "backgroundColor": "#2db31e",
+        "borderColor": "#2db31e"
+    },
+    "rcp85": {
+        "primaryName": "High Carbon",
+        "secondaryName": "More climate change",
+        "backgroundColor": "#db3535",
+        "borderColor": "#db3535"
+    }
+}
