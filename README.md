@@ -22,3 +22,6 @@ For development in a Docker container, install the extensions:
 
 `npm install leaflet`: Install Leaflet
 `npm install react-leaflet`: Install React Leaflet
+
+`npm install react-bootstrap`: Install React Bootstrap
+`npm install --save prop-types`: Install prop-types for React
