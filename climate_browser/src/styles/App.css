@@ -1,14 +1,3 @@
 html, body {
     margin: 0
 }
-
-.content {
-    display: grid;
-    grid-template-columns: 3fr 1fr; /* Two columns with equal width */
-    grid-gap: 0px; /* Gap between the columns */
-  }
-  
-  .map-container,
-  .climate-data-container {
-    width: 100%;
-  }
