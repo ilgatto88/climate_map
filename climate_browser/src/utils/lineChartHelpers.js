@@ -1,10 +1,22 @@
 const TENSION = 0.3;
+const WHITE_DIAGRAM_COLOR = "rgba(255, 255, 255, 0.8)";
 
-export function getChartOptions() {
+export function getChartOptions({
+  parameterName,
+  chartMinimum,
+  chartMaximum,
+  futurePeriodStart,
+  futurePeriodEnd,
+}) {
   let delayed = false;
+  const annotationBoxStart = futurePeriodStart - 1961;
+  const annotationBoxEnd = futurePeriodEnd - 1961;
+  const annotationCenter = Math.ceil(annotationBoxStart + annotationBoxEnd) / 2;
 
   const chartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
+    aspectRation: 2,
     hitRadius: 10,
     hoverRadius: 5,
     animation: {
@@ -30,20 +42,46 @@ export function getChartOptions() {
     scales: {
       x: {
         grid: {
-          display: false,
+          display: true,
+          color: false,
+          drawTicks: true,
+          tickLength: 10,
+          tickWidth: 1,
+          tickColor: WHITE_DIAGRAM_COLOR,
+        },
+        min: 1970,
+        max: 2100,
+        ticks: {
+          color: WHITE_DIAGRAM_COLOR,
+          maxTicksLimit: 14,
         },
         title: {
           display: true,
           text: "Year",
+          color: WHITE_DIAGRAM_COLOR,
+          fontSize: 14,
         },
         display: true,
       },
       y: {
+        grid: {
+          display: true,
+          color: WHITE_DIAGRAM_COLOR,
+          drawTicks: false,
+        },
+        min: chartMinimum,
+        max: chartMaximum,
+        ticks: {
+          beginAtZero: false,
+          color: WHITE_DIAGRAM_COLOR,
+        },
         title: {
           display: true,
-          text: "Mean temperature (°C)",
+          text: parameterName,
+          color: WHITE_DIAGRAM_COLOR,
           fontSize: 14,
         },
+        display: true,
       },
     },
     hover: {
@@ -54,26 +92,30 @@ export function getChartOptions() {
     },
     plugins: {
       background: {
-        color: "#FFFFFF",
+        color: "rgba(99, 88, 88, 0.1)",
       },
+      tooltip: {
+        filter: (tooltipItem) => !tooltipItem.dataset.label.includes("remove"),
+      },
+
       annotation: {
         annotations: {
           box1: {
             drawTime: "beforeDatasetsDraw",
             type: "box",
-            xMin: 75,
-            xMax: 105,
-            yMin: 8,
-            yMax: 13,
+            xMin: annotationBoxStart,
+            xMax: annotationBoxEnd,
+            yMin: chartMinimum,
+            yMax: chartMaximum,
             backgroundColor: "rgba(201, 204, 199,0.5)",
             borderColor: "rgba(230,97,79,0.0)",
           },
           label1: {
             type: "label",
-            xValue: 90,
-            yValue: 12.9,
-            backgroundColor: "rgba(245,245,245, 0.0)",
-            content: ["2036-2065"],
+            xValue: annotationCenter,
+            yValue: chartMaximum - 0.7,
+            color: "rgb(255, 255, 255)",
+            content: [`${futurePeriodStart}-${futurePeriodEnd}`],
             font: {
               size: 12,
             },
@@ -81,12 +123,14 @@ export function getChartOptions() {
         },
       },
       legend: {
+        display: true,
         position: "bottom",
         labels: {
           // eslint-disable-next-line no-unused-vars
           filter(item, chart) {
             return !item.text.includes("remove");
           },
+          color: WHITE_DIAGRAM_COLOR,
         },
       },
       title: {
@@ -132,10 +176,13 @@ export function range(start, end) {
 }
 
 export function prepareLineDiagramData(
+  scenario,
   analysisTimeRange,
   historicalRawData,
   ensembleTimeRange,
-  ensembleData
+  ensembleData,
+  hideHistoricalData,
+  alldata
 ) {
   const historicalData = insertNullValues(
     historicalRawData,
@@ -143,72 +190,57 @@ export function prepareLineDiagramData(
     1961,
     2100
   );
-  const rcp26Median = insertNullValues(
+
+  const ensembleMedian = insertNullValues(
     ensembleData.statistics1D.median,
     ensembleTimeRange,
     1961,
     2100
   );
-  const rcp26Lower = insertNullValues(
-    ensembleData.statistics1D.lowerPercentile,
-    ensembleTimeRange,
-    1961,
-    2100
-  );
-  const rcp26Upper = insertNullValues(
-    ensembleData.statistics1D.upperPercentile,
-    ensembleTimeRange,
-    1961,
-    2100
-  );
+
+  const chartData = [];
+
+  chartData.push({
+    hidden: hideHistoricalData,
+    label: "Historical",
+    borderColor: "#778ed9",
+    backgroundColor: "#778ed9",
+    data: historicalData,
+    fill: false,
+    pointRadius: 1,
+    borderWidth: 2,
+    tension: TENSION,
+  });
+
+  chartData.push({
+    label: "Ensemble median",
+    backgroundColor: "#000000",
+    borderColor: "#000000",
+    data: ensembleMedian,
+    fill: false,
+    pointRadius: 1,
+    borderWidth: 2,
+    tension: TENSION,
+  });
+
+  Object.keys(alldata).forEach((key) => {
+    const data = insertNullValues(alldata[key], ensembleTimeRange, 1961, 2100);
+    const obj = {
+      data,
+      label: `${key}_remove`,
+      fill: false,
+      pointRadius: 0,
+      borderWidth: 10,
+      backgroundColor: "rgba(237, 31, 17, 0.15)",
+      borderColor: "rgba(237, 31, 17, 0.15)",
+      tension: 0.3,
+    };
+    chartData.push(obj);
+  });
 
   const data = {
     labels: range(1961, 2100),
-    datasets: [
-      {
-        label: "Historical",
-        borderColor: "#A99D9D",
-        backgroundColor: "#A99D9D",
-        data: historicalData,
-        fill: false,
-        pointRadius: 1,
-        borderWidth: 2,
-        tension: TENSION,
-      },
-      {
-        label: "RCP 2.6",
-        backgroundColor: "#AEC99E",
-        borderColor: "#AEC99E",
-        data: rcp26Median,
-        fill: false,
-        pointRadius: 1,
-        borderWidth: 2,
-        tension: TENSION,
-      },
-      {
-        label: "Upper percentile",
-        borderColor: "rgba(255, 255, 255, 0.0)",
-        data: rcp26Upper,
-        fill: false,
-        pointRadius: 1,
-        tension: TENSION,
-      },
-      {
-        label: "Lower percentile",
-        backgroundColor: (context) => {
-          const { ctx } = context.chart;
-          const gradient = ctx.createLinearGradient(0, 0, 0, 250);
-          gradient.addColorStop(0, "rgba(174,201,158,1)");
-          gradient.addColorStop(1, "rgba(226,238,219,1)");
-          return gradient;
-        },
-        borderColor: "rgba(255, 255, 255, 0.0)",
-        data: rcp26Lower,
-        fill: "-1",
-        pointRadius: 1,
-        tension: TENSION,
-      },
-    ],
+    datasets: chartData,
   };
   return data;
 }
