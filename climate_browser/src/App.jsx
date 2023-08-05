@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import OffCanvasLineDiag from "./components/OffCanvasLineDiag";
+import MapHeader from "./components/MapHeader";
 import Map from "./components/MapContainer";
+import MapFooter from "./components/MapFooter";
 
 import "./styles/App.css";
 
@@ -25,7 +27,11 @@ function App() {
 
   return (
     <>
-      <Map onMunicipalityIdChange={handleMunicipalityIdChange} />
+      <div className="app">
+        <MapHeader />
+        <Map onMunicipalityIdChange={handleMunicipalityIdChange} />
+        <MapFooter />
+      </div>
       <OffCanvasLineDiag
         municipalityId={municipalityId}
         scenario={DEFAULT_SCENARIO}

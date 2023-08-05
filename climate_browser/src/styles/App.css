@@ -1,3 +1,11 @@
-html, body {
-    margin: 0
+html,
+body {
+    margin: 0;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    /* Set the height of the whole app */
 }

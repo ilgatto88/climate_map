@@ -1,0 +1,12 @@
+.map-footer {
+    display: block;
+    background-color: rgb(71, 68, 68);
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    height: 8%;
+    width: 100%;
+    z-index: 1000;
+}
