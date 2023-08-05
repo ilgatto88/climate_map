@@ -21,7 +21,7 @@ import {
 import annotationPlugin from "chartjs-plugin-annotation";
 
 // Custom Utils
-import "../styles/ClimateData.css";
+import "../styles/OffCanvasLineDiag.css";
 import "bootstrap/dist/css/bootstrap.css";
 import OffCanvasSubHeader from "./OffCanvasSubHeader";
 
