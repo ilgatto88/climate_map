@@ -46,7 +46,7 @@ ChartJS.register(
   Tooltip
 );
 
-export default function ClimateData({
+export default function OffCanvasLineDiag({
   municipalityId,
   scenario,
   historicalPeriod,
@@ -163,7 +163,7 @@ export default function ClimateData({
   );
 }
 
-ClimateData.propTypes = {
+OffCanvasLineDiag.propTypes = {
   municipalityId: PropTypes.string.isRequired,
   scenario: PropTypes.string.isRequired,
   historicalPeriod: PropTypes.string.isRequired,

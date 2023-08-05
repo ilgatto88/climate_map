@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ClimateData from "./components/ClimateData";
+import OffCanvasLineDiag from "./components/OffCanvasLineDiag";
 import Map from "./components/MapContainer";
 
 import "./styles/App.css";
@@ -26,7 +26,7 @@ function App() {
   return (
     <>
       <Map onMunicipalityIdChange={handleMunicipalityIdChange} />
-      <ClimateData
+      <OffCanvasLineDiag
         municipalityId={municipalityId}
         scenario={DEFAULT_SCENARIO}
         historicalPeriod={HISTORICAL_PERIOD}

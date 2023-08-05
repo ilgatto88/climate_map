@@ -1,15 +1,16 @@
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import React, { useEffect, useRef } from "react";
+import PropTypes from "prop-types";
 import {
   fetchGeoServerResponse,
   parseGeoServerResponse,
 } from "../utils/geoserver/helpers";
 
 function Map({ onMunicipalityIdChange }) {
-  const [municipalityId, setMunicipalityId] = React.useState(null);
+  const [setMunicipalityId] = React.useState(null);
   const mapContainerRef = useRef(null);
-  const mapCenter = [48.33089, 16.14196];
+  const mapCenter = [47.7, 13.8];
 
   useEffect(() => {
     const map = L.map(mapContainerRef.current, {
@@ -72,5 +73,9 @@ function Map({ onMunicipalityIdChange }) {
     />
   );
 }
+
+Map.propTypes = {
+  onMunicipalityIdChange: PropTypes.func.isRequired,
+};
 
 export default Map;
