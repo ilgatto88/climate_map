@@ -15,8 +15,8 @@ export function getChartOptions({
 
   const chartOptions = {
     responsive: true,
-    maintainAspectRatio: false,
-    aspectRation: 2,
+    maintainAspectRatio: true,
+    aspectRatio: 1,
     hitRadius: 10,
     hoverRadius: 5,
     animation: {
