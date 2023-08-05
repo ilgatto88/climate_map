@@ -14,3 +14,7 @@ export function parseGeoServerResponse(response) {
   }
   return null;
 }
+
+export function swapCoordinates(coordinatesArray) {
+  return coordinatesArray.map(([x, y]) => [y, x]);
+}
