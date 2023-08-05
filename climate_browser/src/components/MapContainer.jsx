@@ -1,6 +1,6 @@
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import {
   fetchGeoServerResponse,
@@ -8,9 +8,11 @@ import {
 } from "../utils/geoserver/helpers";
 
 function Map({ onMunicipalityIdChange }) {
-  const [setMunicipalityId] = React.useState(null);
+  const [municipalityId, setMunicipalityId] = useState(null);
   const mapContainerRef = useRef(null);
   const mapCenter = [47.7, 13.8];
+
+  console.log(`Municipality selected: ${municipalityId}`);
 
   useEffect(() => {
     const map = L.map(mapContainerRef.current, {
