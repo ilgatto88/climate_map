@@ -16,7 +16,7 @@ const DEFAULT_HIDE_HISTORICAL_DATA = false;
 
 function App() {
   const [municipalityId, setMunicipalityId] = useState(DEFAULT_MUNICIPALITY_ID);
-  const [showChart, setShowChart] = useState(false);
+  const [showChart, setShowChart] = useState(DEFAULT_SHOW_CHART);
 
   const handleClose = () => setShowChart(DEFAULT_SHOW_CHART);
 
@@ -29,7 +29,10 @@ function App() {
     <>
       <div className="app">
         <MapHeader />
-        <Map onMunicipalityIdChange={handleMunicipalityIdChange} />
+        <Map
+          onMunicipalityIdChange={handleMunicipalityIdChange}
+          showChart={showChart}
+        />
         <MapFooter />
       </div>
       <OffCanvasLineDiag

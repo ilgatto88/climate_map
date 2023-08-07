@@ -10,13 +10,13 @@ import {
 
 import "../styles/Map.css";
 
-function Map({ onMunicipalityIdChange }) {
+export default function Map({ onMunicipalityIdChange, showChart }) {
   const [municipalityId, setMunicipalityId] = useState(null);
   const mapContainerRef = useRef(null);
   const mapCenter = [47.7, 13.8];
 
-  const southWest = L.latLng(46, 9);
-  const northEast = L.latLng(49.5, 18);
+  const southWest = L.latLng(45, 8);
+  const northEast = L.latLng(50, 20);
   const bounds = L.latLngBounds(southWest, northEast);
 
   const geoServerBaseUrl = "http://localhost/geoserver";
@@ -111,6 +111,16 @@ function Map({ onMunicipalityIdChange }) {
     };
   }, []);
 
+  useEffect(() => {
+    const mapContainer = mapContainerRef.current;
+    const gElement = mapContainer.querySelector("g");
+    if (!showChart) {
+      if (gElement) {
+        gElement.innerHTML = "";
+      }
+    }
+  }, [showChart]);
+
   return (
     <div
       ref={mapContainerRef}
@@ -122,6 +132,5 @@ function Map({ onMunicipalityIdChange }) {
 
 Map.propTypes = {
   onMunicipalityIdChange: PropTypes.func.isRequired,
+  showChart: PropTypes.bool.isRequired,
 };
-
-export default Map;
