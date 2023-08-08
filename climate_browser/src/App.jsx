@@ -28,7 +28,11 @@ function App() {
   return (
     <>
       <div className="app">
-        <MapHeader />
+        <MapHeader
+          parameter={DEFAULT_PARAMETER}
+          scenario={DEFAULT_SCENARIO}
+          futurePeriod={FUTURE_PERIOD}
+        />
         <Map
           onMunicipalityIdChange={handleMunicipalityIdChange}
           showChart={showChart}
