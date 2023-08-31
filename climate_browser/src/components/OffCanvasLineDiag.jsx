@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
+import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretUp, faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { Line } from "react-chartjs-2";
@@ -19,6 +19,7 @@ import {
   Tooltip,
 } from "chart.js";
 import annotationPlugin from "chartjs-plugin-annotation";
+import { close } from "../features/sidebarSlice";
 
 // Custom Utils
 import "../styles/OffCanvasLineDiag.css";
@@ -46,18 +47,24 @@ ChartJS.register(
   Tooltip
 );
 
-export default function OffCanvasLineDiag({
-  municipalityId,
-  scenario,
-  historicalPeriod,
-  futurePeriod,
-  parameter,
-  showChart,
-  handleClose,
-  hideHistoricalData,
-}) {
+export default function OffCanvasLineDiag() {
   const [municipalityData, setMunicipalityData] = useState([]);
   const [municipalityMeta, setMunicipalityMeta] = useState({});
+
+  const sidebarState = useSelector((state) => state.sidebarHandler.value);
+  const municipalityId = useSelector(
+    (state) => state.municipalityIdHandler.value
+  );
+  const scenario = useSelector((state) => state.scenarioHandler.value);
+  const futurePeriod = useSelector((state) => state.futurePeriodHandler.value);
+  const historicalPeriod = useSelector(
+    (state) => state.historicalPeriodHandler.value
+  );
+  const hideHistoricalData = useSelector(
+    (state) => state.historicalDataHandler.value
+  );
+  const parameter = useSelector((state) => state.parameterHandler.value);
+  const dispatch = useDispatch();
 
   const API_ENDPOINT = `http://127.0.0.1:8000/api/v1/municipalitydata/${municipalityId}`;
   const API_META_ENDPOINT = `http://127.0.0.1:8000/api/v1/municipalities/${municipalityId}`;
@@ -72,6 +79,14 @@ export default function OffCanvasLineDiag({
 
   if (municipalityData.length === 0) {
     return <div>Loading...</div>;
+  }
+
+  if (sidebarState) {
+    const offCanvasCloseButton = document.querySelector(".btn-close");
+    console.log(offCanvasCloseButton);
+    if (offCanvasCloseButton !== null) {
+      offCanvasCloseButton.classList.add("btn-close-white");
+    }
   }
 
   const chartData = prepareLineDiagramData(
@@ -120,7 +135,7 @@ export default function OffCanvasLineDiag({
   const futurePeriodEnd = parseInt(futurePeriod.split("-")[1], 10);
 
   const chartOptions = getChartOptions({
-    parameterName: "Mean temperature (°C)",
+    parameterName: parameter,
     chartMinimum: absoluteChartMinimum,
     chartMaximum: absoluteChartMaximum,
     futurePeriodStart,
@@ -129,8 +144,8 @@ export default function OffCanvasLineDiag({
 
   return (
     <Offcanvas
-      show={showChart}
-      onHide={handleClose}
+      show={sidebarState}
+      onHide={() => dispatch(close())}
       placement="end"
       backdrop={false}
       // eslint-disable-next-line react/jsx-boolean-value
@@ -147,10 +162,6 @@ export default function OffCanvasLineDiag({
         </Offcanvas.Title>
       </Offcanvas.Header>
       <OffCanvasSubHeader
-        parameter={parameter}
-        scenario={scenario}
-        historicalPeriod={historicalPeriod}
-        futurePeriod={futurePeriod}
         historicalValue={historicalValue}
         ensembleValue={ensembleValue}
         climateChangeValue={climateChangeValue}
@@ -162,14 +173,3 @@ export default function OffCanvasLineDiag({
     </Offcanvas>
   );
 }
-
-OffCanvasLineDiag.propTypes = {
-  municipalityId: PropTypes.string.isRequired,
-  scenario: PropTypes.string.isRequired,
-  historicalPeriod: PropTypes.string.isRequired,
-  futurePeriod: PropTypes.string.isRequired,
-  parameter: PropTypes.string.isRequired,
-  showChart: PropTypes.bool.isRequired,
-  handleClose: PropTypes.func.isRequired,
-  hideHistoricalData: PropTypes.bool.isRequired,
-};

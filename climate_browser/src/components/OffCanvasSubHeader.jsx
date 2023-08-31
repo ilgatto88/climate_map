@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,15 +8,18 @@ import getNumberWithSign from "../utils/cosmetics";
 import ScenarioData from "../data/scenarios.json";
 
 export default function OffCanvasSubHeader({
-  parameter,
-  scenario,
-  historicalPeriod,
-  futurePeriod,
   historicalValue,
   ensembleValue,
   climateChangeValue,
   changeText,
 }) {
+  const scenario = useSelector((state) => state.scenarioHandler.value);
+  const futurePeriod = useSelector((state) => state.futurePeriodHandler.value);
+  const historicalPeriod = useSelector(
+    (state) => state.historicalPeriodHandler.value
+  );
+
+  const parameter = useSelector((state) => state.parameterHandler.value);
   return (
     <div className="d-flex flex-column ms-3">
       <h3 className="text-main-name mb-0">Projected change in mean</h3>
@@ -47,10 +51,6 @@ export default function OffCanvasSubHeader({
 }
 
 OffCanvasSubHeader.propTypes = {
-  parameter: PropTypes.string.isRequired,
-  scenario: PropTypes.string.isRequired,
-  historicalPeriod: PropTypes.string.isRequired,
-  futurePeriod: PropTypes.string.isRequired,
   historicalValue: PropTypes.string.isRequired,
   ensembleValue: PropTypes.string.isRequired,
   climateChangeValue: PropTypes.string.isRequired,

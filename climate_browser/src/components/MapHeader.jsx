@@ -1,14 +1,18 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 import "../styles/MapHeader.css";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ScenarioData from "../data/scenarios.json";
 
-function MapHeader({ parameter, scenario, futurePeriod }) {
+function MapHeader() {
+  const scenario = useSelector((state) => state.scenarioHandler.value);
+  const futurePeriod = useSelector((state) => state.futurePeriodHandler.value);
+  const parameterName = useSelector((state) => state.parameterHandler.value);
+
   return (
     <header className="map-header">
-      <div className="header-parameter">{parameter}</div>
+      <div className="header-parameter">{parameterName}</div>
       <div className="header-scenario-futureperiod">
         {ScenarioData[scenario].primaryName}{" "}
         <FontAwesomeIcon icon={faArrowRight} />{" "}
@@ -20,9 +24,3 @@ function MapHeader({ parameter, scenario, futurePeriod }) {
 }
 
 export default MapHeader;
-
-MapHeader.propTypes = {
-  parameter: PropTypes.string.isRequired,
-  scenario: PropTypes.string.isRequired,
-  futurePeriod: PropTypes.string.isRequired,
-};

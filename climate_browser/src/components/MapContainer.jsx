@@ -1,7 +1,9 @@
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import React, { useEffect, useRef, useState } from "react";
-import PropTypes from "prop-types";
+import React, { useEffect, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { open } from "../features/sidebarSlice";
+import { changeMunicipalityId } from "../features/variables/municipalityIdSlice";
 import {
   swapCoordinates,
   fetchGeoServerResponse,
@@ -10,8 +12,7 @@ import {
 
 import "../styles/Map.css";
 
-export default function Map({ onMunicipalityIdChange, showChart }) {
-  const [municipalityId, setMunicipalityId] = useState(null);
+export default function Map() {
   const mapContainerRef = useRef(null);
   const mapCenter = [47.7, 13.8];
 
@@ -25,7 +26,8 @@ export default function Map({ onMunicipalityIdChange, showChart }) {
   const ATClimateMapsUrl = `${geoServerBaseUrl}/at_climate_maps/gwc/service/wms`;
   const ATMunWFSBaseUrl = `${geoServerBaseUrl}/atmun/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=atmun%3ASTATISTIK_AUSTRIA_GEM_20230101&srsName=epsg:4326&outputFormat=application%2Fjson&cql_filter=g_id=`;
 
-  console.log(`Municipality selected: ${municipalityId}`);
+  const sidebarState = useSelector((state) => state.sidebarHandler.value);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const map = L.map(mapContainerRef.current, {
@@ -98,8 +100,8 @@ export default function Map({ onMunicipalityIdChange, showChart }) {
       const response = await fetchGeoServerResponse(url);
       const value = parseGeoServerResponse(response);
       if (value) {
-        setMunicipalityId(value);
-        onMunicipalityIdChange(value);
+        dispatch(open());
+        dispatch(changeMunicipalityId(value));
 
         polylines.forEach((item) => map.removeLayer(item));
         fetchAndDrawPolyline(value);
@@ -114,12 +116,12 @@ export default function Map({ onMunicipalityIdChange, showChart }) {
   useEffect(() => {
     const mapContainer = mapContainerRef.current;
     const gElement = mapContainer.querySelector("g");
-    if (!showChart) {
+    if (!sidebarState) {
       if (gElement) {
         gElement.innerHTML = "";
       }
     }
-  }, [showChart]);
+  }, [sidebarState]);
 
   return (
     <div
@@ -129,8 +131,3 @@ export default function Map({ onMunicipalityIdChange, showChart }) {
     />
   );
 }
-
-Map.propTypes = {
-  onMunicipalityIdChange: PropTypes.func.isRequired,
-  showChart: PropTypes.bool.isRequired,
-};
