@@ -1,0 +1,92 @@
+{
+  "hotweather": {
+    "name": "Hot Weather",
+    "headerColor": "#ff0000",
+    "items": [
+      {
+        "name": "summerdays",
+        "title": "Summer Days (+25°C)"
+      },
+      {
+        "name": "hotdays",
+        "title": "Hot Days (+30°C)"
+      }
+    ]
+  },
+  "coldweather": {
+    "name": "Cold Weather",
+    "headerColor": "#6db6ac",
+    "items": [
+      {
+        "name": "frostdays",
+        "title": "Frost Days (-1°C)"
+      },
+      {
+        "name": "icedays",
+        "title": "Ice Days (-5°C)"
+      }
+    ]
+  },
+  "temperature": {
+    "name": "Temperature",
+    "headerColor": "#eb830e",
+    "items": [
+      {
+        "name": "tropicalnights",
+        "title": "Tropical Nights (+20°C)"
+      },
+      {
+        "name": "coldnights",
+        "title": "Cold Nights (-10°C)"
+      }
+    ]
+  },
+  "precipitation": {
+    "name": "Precipitation",
+    "headerColor": "#0000ff",
+    "items": [
+      {
+        "name": "raindays",
+        "title": "Rain Days (>1mm)"
+      },
+      {
+        "name": "wetdays",
+        "title": "Wet Days (>10mm)"
+      },
+      {
+        "name": "snowdays",
+        "title": "Snow Days (>1mm)"
+      },
+      {
+        "name": "snowdepth",
+        "title": "Snow Depth"
+      }
+    ]
+  },
+  "agriculture": {
+    "name": "Agriculture",
+    "headerColor": "#338219",
+    "items": [
+      {
+        "name": "growingseason",
+        "title": "Growing Season"
+      },
+      {
+        "name": "growingdegree",
+        "title": "Growing Degree Days"
+      },
+      {
+        "name": "frostfree",
+        "title": "Frost Free Days"
+      },
+      {
+        "name": "heatingdegree",
+        "title": "Heating Degree Days"
+      },
+      {
+        "name": "coolingdegree",
+        "title": "Cooling Degree Days"
+      }
+    ]
+  }
+}
