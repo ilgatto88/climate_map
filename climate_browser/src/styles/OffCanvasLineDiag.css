@@ -8,11 +8,11 @@
 
 .offcanvas.offcanvas-end {
      width: 500px !important;
-     height: 85%;
+     height: 83.7%;
      background-color: var(--grey);
      color: var(--white);
      border-color: var(--white);
-     top: 7% !important;
+     top: 8.3% !important;
 }
 
 .offcanvas-header {

@@ -1,17 +1,21 @@
 import React from "react";
 import OffCanvasLineDiag from "./components/OffCanvasLineDiag";
-import MapHeader from "./components/MapHeader";
-import Map from "./components/MapContainer";
+import NavBar from "./components/MapHeader";
+import Map from "./components/Map";
 import MapFooter from "./components/MapFooter";
+import MapOverlay from "./components/MapOverlay";
 
 import "./styles/App.css";
+import ScenarioBar from "./components/ScenarioBar";
 
 function App() {
   return (
     <>
       <div className="app">
-        <MapHeader />
+        <MapOverlay />
+        <NavBar />
         <Map />
+        <ScenarioBar />
         <MapFooter />
       </div>
       <OffCanvasLineDiag />

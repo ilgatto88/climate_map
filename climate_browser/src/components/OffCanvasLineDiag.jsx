@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretUp, faCaretDown } from "@fortawesome/free-solid-svg-icons";
-import { Line } from "react-chartjs-2";
+import React, { useEffect, useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import { Line } from "react-chartjs-2";
+import { useDispatch, useSelector } from "react-redux";
 
 // External Libraries (chart.js)
 import {
@@ -22,8 +22,8 @@ import annotationPlugin from "chartjs-plugin-annotation";
 import { close } from "../features/sidebarSlice";
 
 // Custom Utils
-import "../styles/OffCanvasLineDiag.css";
 import "bootstrap/dist/css/bootstrap.css";
+import "../styles/OffCanvasLineDiag.css";
 import OffCanvasSubHeader from "./OffCanvasSubHeader";
 
 import {
@@ -48,7 +48,10 @@ ChartJS.register(
 );
 
 export default function OffCanvasLineDiag() {
-  const [municipalityData, setMunicipalityData] = useState([]);
+  const [municipalityHistoricalData, setMunicipalityHistoricalData] = useState(
+    []
+  );
+  const [municipalityScenarioData, setMunicipalityScenarioData] = useState([]);
   const [municipalityMeta, setMunicipalityMeta] = useState({});
 
   const sidebarState = useSelector((state) => state.sidebarHandler.value);
@@ -66,45 +69,52 @@ export default function OffCanvasLineDiag() {
   const parameter = useSelector((state) => state.parameterHandler.value);
   const dispatch = useDispatch();
 
-  const API_ENDPOINT = `http://127.0.0.1:8000/api/v1/municipalitydata/${municipalityId}`;
-  const API_META_ENDPOINT = `http://127.0.0.1:8000/api/v1/municipalities/${municipalityId}`;
+  const API_BASE = "http://127.0.0.1:8000/api/v1/";
+  const API_HISTORICAL_ENDPOINT = `${API_BASE}municipalitydata/historical/${parameter}/${municipalityId}`;
+  const API_SCENARIO_ENDPOINT = `${API_BASE}municipalitydata/scenario/${scenario}/${parameter}/${municipalityId}`;
+  const API_META_ENDPOINT = `${API_BASE}municipalities/${municipalityId}`;
 
   useEffect(() => {
-    fetchData(API_ENDPOINT).then((data) => setMunicipalityData(data));
+    fetchData(API_HISTORICAL_ENDPOINT).then((data) =>
+      setMunicipalityHistoricalData(data)
+    );
+  }, [municipalityId]);
+
+  useEffect(() => {
+    fetchData(API_SCENARIO_ENDPOINT).then((data) =>
+      setMunicipalityScenarioData(data)
+    );
   }, [municipalityId, scenario]);
 
   useEffect(() => {
     fetchData(API_META_ENDPOINT).then((data) => setMunicipalityMeta(data));
   }, [municipalityId]);
 
-  if (municipalityData.length === 0) {
-    return <div>Loading...</div>;
+  if (municipalityHistoricalData.length === 0) {
+    return <div>Loading historical data...</div>;
+  }
+
+  if (municipalityScenarioData.length === 0) {
+    return <div>Loading scenario data...</div>;
   }
 
   if (sidebarState) {
     const offCanvasCloseButton = document.querySelector(".btn-close");
-    console.log(offCanvasCloseButton);
     if (offCanvasCloseButton !== null) {
       offCanvasCloseButton.classList.add("btn-close-white");
     }
   }
 
   const chartData = prepareLineDiagramData(
-    scenario,
-    municipalityData.meta.analysisTimeRange,
-    municipalityData.historical.rawData,
-    municipalityData.meta.ensembleTimeRange,
-    municipalityData.ensemble[scenario],
-    hideHistoricalData,
-    municipalityData.ensemble[scenario].rawData
+    municipalityHistoricalData,
+    municipalityScenarioData,
+    hideHistoricalData
   );
 
   const historicalValue =
-    municipalityData.historical.statistics0D[historicalPeriod].mean.toFixed(1);
+    municipalityHistoricalData.statistics0D[historicalPeriod].mean.toFixed(1);
   const ensembleValue =
-    municipalityData.ensemble[scenario].statistics0D[futurePeriod].mean.toFixed(
-      1
-    );
+    municipalityScenarioData.statistics0D[futurePeriod].mean.toFixed(1);
 
   const climateChangeValue = (ensembleValue - historicalValue).toFixed(1);
   const changeUpDownText = climateChangeValue > 0 ? "Up " : "Down";
@@ -115,17 +125,17 @@ export default function OffCanvasLineDiag() {
     </div>
   );
 
-  const historicalMinimum = Math.min(...municipalityData.historical.rawData);
+  const historicalMinimum = Math.min(...municipalityHistoricalData.rawData);
   const ensembleMinimum = Math.min(
-    ...municipalityData.ensemble[scenario].statistics1D.minimum
+    ...municipalityScenarioData.statistics1D.minimum
   );
   const absoluteChartMinimum = Math.floor(
     Math.min(historicalMinimum, ensembleMinimum)
   );
 
-  const historicalMaximum = Math.max(...municipalityData.historical.rawData);
+  const historicalMaximum = Math.max(...municipalityHistoricalData.rawData);
   const ensembleMaximum = Math.max(
-    ...municipalityData.ensemble[scenario].statistics1D.maximum
+    ...municipalityScenarioData.statistics1D.maximum
   );
   const absoluteChartMaximum = Math.ceil(
     Math.max(historicalMaximum, ensembleMaximum)

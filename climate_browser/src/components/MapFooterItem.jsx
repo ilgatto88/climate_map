@@ -1,9 +1,10 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-import React from "react";
 import PropTypes from "prop-types";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { changeParameter } from "../features/variables/parameterSlice";
 
+import CategoryData from "../data/categories.json";
 import ParameterData from "../data/parameters.json";
 
 import "../styles/MapFooterItem.css";
@@ -53,10 +54,16 @@ export default function MapFooterItem({
     >
       <div
         className="parameter-footer-item-icon"
-        style={{ backgroundColor: ParameterData[categoryName].headerColor }}
-      />
+        style={{ backgroundColor: CategoryData[categoryName].headerColor }}
+      >
+        <img
+          className="category-svg"
+          src={`/img/${categoryName}.svg`}
+          alt={categoryName}
+        />
+      </div>
       <div className="parameter-footer-item-title">
-        {ParameterData[categoryName].name}
+        {CategoryData[categoryName].name}
       </div>
       <ul
         className={`category-menu category-${categoryName} ${
@@ -66,7 +73,7 @@ export default function MapFooterItem({
         <li
           className="category-header"
           style={{
-            backgroundColor: ParameterData[categoryName].headerColor,
+            backgroundColor: CategoryData[categoryName].headerColor,
             color: "white",
           }}
           onClick={() => closeCategory(categoryName)}
@@ -76,14 +83,14 @@ export default function MapFooterItem({
             }
           }}
         >
-          {ParameterData[categoryName].name}{" "}
+          {CategoryData[categoryName].name}{" "}
         </li>
-        {ParameterData[categoryName].items.map((item) => (
+        {CategoryData[categoryName].items.map((item) => (
           <button
             type="button"
             onClick={() => {
               selectParameter(item);
-              dispatch(changeParameter(item.title));
+              dispatch(changeParameter(item.name));
               closeCategory(categoryName);
             }}
             onKeyDown={(e) => {
@@ -97,8 +104,9 @@ export default function MapFooterItem({
               data-value={item.name}
               key={item.name}
               className={`category-menu-item ${
-                item.name === "summerdays" ? "current" : ""
+                item.name === "tm" ? "current" : ""
               }`}
+              title={ParameterData[item.name].description}
             >
               {item.title}
             </li>

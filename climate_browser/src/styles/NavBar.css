@@ -1,0 +1,83 @@
+.navbar-main {
+    display: flex;
+    align-items: top;
+    background-color: rgb(51, 51, 51);
+    color: white;
+    box-sizing: border-box;
+    font-weight: 400;
+    text-align: center;
+    padding: 16px 0px 5px 0px;
+    border-bottom: 1px solid rgb(138, 138, 138);
+}
+
+.menu {
+    box-sizing: border-box;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    margin-right: 30px;
+}
+
+.open {
+    display: block !important;
+}
+
+.menu-wrapper {
+    display: none;
+    background-color: rgb(0, 0, 0, .55);
+    position: absolute;
+    top: 82px;
+    z-index: 99999;
+    width: 200px;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+.menu-wrapper>ul {
+    list-style-type: none;
+    width: auto;
+    padding: 0;
+    margin: 0
+}
+
+.menu-item {
+    display: list-item;
+    width: 100%;
+    padding-left: 15px;
+    text-decoration: none;
+    color: white;
+    padding-bottom: 10px;
+}
+
+.menu-item:hover {
+    background-color: #fdb615;
+}
+
+
+.biginfo {
+    margin-right: 30px;
+}
+
+.biginfo>svg {
+    color: orange;
+    font-size: 20px;
+}
+
+.biginfo>svg:hover {
+    color: white;
+}
+
+.mapinfo {
+    font-weight: 500;
+    flex-grow: 1;
+}
+
+.parameter {
+    font-size: 1.3rem;
+}
+
+.spacer {
+    flex-grow: 1;
+    margin: 0 10px;
+}

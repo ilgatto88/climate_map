@@ -1,0 +1,56 @@
+{
+  "hotweather": {
+    "name": "Hot Weather",
+    "headerColor": "#ffbc00",
+    "items": [
+      {
+        "name": "su25",
+        "title": "Summer Days"
+      },
+      {
+        "name": "su30",
+        "title": "Hot Days"
+      }
+    ]
+  },
+  "coldweather": {
+    "name": "Cold Weather",
+    "headerColor": "#bccce6",
+    "items": [
+      {
+        "name": "fd0",
+        "title": "Frost Days"
+      }
+    ]
+  },
+  "temperature": {
+    "name": "Temperature",
+    "headerColor": "#eb830e",
+    "items": [
+      {
+        "name": "tm",
+        "title": "Mean temperature"
+      }
+    ]
+  },
+  "precipitation": {
+    "name": "Precipitation",
+    "headerColor": "#4287f5",
+    "items": [
+      {
+        "name": "rr1",
+        "title": "Wet Days"
+      }
+    ]
+  },
+  "agriculture": {
+    "name": "Agriculture",
+    "headerColor": "#4e9117",
+    "items": [
+      {
+        "name": "gdd15",
+        "title": "Growing Degree Days (Base 15°C)"
+      }
+    ]
+  }
+}

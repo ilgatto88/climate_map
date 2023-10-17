@@ -1,92 +1,56 @@
 {
-  "hotweather": {
-    "name": "Hot Weather",
-    "headerColor": "#ff0000",
-    "items": [
-      {
-        "name": "summerdays",
-        "title": "Summer Days (+25°C)"
-      },
-      {
-        "name": "hotdays",
-        "title": "Hot Days (+30°C)"
-      }
-    ]
-  },
-  "coldweather": {
-    "name": "Cold Weather",
-    "headerColor": "#6db6ac",
-    "items": [
-      {
-        "name": "frostdays",
-        "title": "Frost Days (-1°C)"
-      },
-      {
-        "name": "icedays",
-        "title": "Ice Days (-5°C)"
-      }
-    ]
-  },
-  "temperature": {
-    "name": "Temperature",
-    "headerColor": "#eb830e",
-    "items": [
-      {
-        "name": "tropicalnights",
-        "title": "Tropical Nights (+20°C)"
-      },
-      {
-        "name": "coldnights",
-        "title": "Cold Nights (-10°C)"
-      }
-    ]
-  },
-  "precipitation": {
-    "name": "Precipitation",
-    "headerColor": "#0000ff",
-    "items": [
-      {
-        "name": "raindays",
-        "title": "Rain Days (>1mm)"
-      },
-      {
-        "name": "wetdays",
-        "title": "Wet Days (>10mm)"
-      },
-      {
-        "name": "snowdays",
-        "title": "Snow Days (>1mm)"
-      },
-      {
-        "name": "snowdepth",
-        "title": "Snow Depth"
-      }
-    ]
-  },
-  "agriculture": {
-    "name": "Agriculture",
-    "headerColor": "#338219",
-    "items": [
-      {
-        "name": "growingseason",
-        "title": "Growing Season"
-      },
-      {
-        "name": "growingdegree",
-        "title": "Growing Degree Days"
-      },
-      {
-        "name": "frostfree",
-        "title": "Frost Free Days"
-      },
-      {
-        "name": "heatingdegree",
-        "title": "Heating Degree Days"
-      },
-      {
-        "name": "coolingdegree",
-        "title": "Cooling Degree Days"
-      }
-    ]
-  }
+    "tm": {
+        "name": "Mean temperature",
+        "unit": "Celsius Degrees",
+        "description": "Mean temperature is the daily average temperature, calculated from the minimum and maximum temperature in this case.",
+        "tech_description": "Test test",
+        "legend_min": -10,
+        "legend_max": 20,
+        "legend_colorbar": "linear-gradient(to right, rgb(44, 123, 176) 0%, rgb(171, 217, 233) 25%, rgb(255, 255, 191) 50%, rgb(253, 174, 97) 75%, rgb(215, 25, 28) 100%)"
+    },
+    "su25": {
+        "name": "Summer Days",
+        "unit": "Number of days",
+        "description": "A Summer Day is a day when the daily maximum temperature is equal or higher than 25 Celsius degrees. Formula: Tmax ≥ 25°C",
+        "tech_description": "Test test",
+        "legend_min": 0,
+        "legend_max": 100,
+        "legend_colorbar": "linear-gradient(to right, rgb(44, 123, 176) 0%, rgb(171, 217, 233) 25%, rgb(255, 255, 191) 50%, rgb(253, 174, 97) 75%, rgb(215, 25, 28) 100%)"
+    },
+    "su30": {
+        "name": "Hot Days",
+        "unit": "Number of days",
+        "description": "A Hot Day is a day when the daily maximum temperature is equal or higher than 30 Celsius degrees. Formula: Tmax ≥ 30°C",
+        "tech_description": "Test test",
+        "legend_min": 0,
+        "legend_max": 30,
+        "legend_colorbar": "linear-gradient(to right, rgb(44, 123, 176) 0%, rgb(171, 217, 233) 25%, rgb(255, 255, 191) 50%, rgb(253, 174, 97) 75%, rgb(215, 25, 28) 100%)"
+    },
+    "fd0": {
+        "name": "Frost Days",
+        "unit": "Number of days",
+        "description": "A Frost Day is a day when the daily minimum temperature is lower than 0 Celsius degrees. Formula: Tmin < 0°C",
+        "tech_description": "Test test",
+        "legend_min": 30,
+        "legend_max": 300,
+        "legend_colorbar": "linear-gradient(to left, rgb(44, 123, 176) 0%, rgb(171, 217, 233) 25%, rgb(255, 255, 191) 50%, rgb(253, 174, 97) 75%, rgb(215, 25, 28) 100%)"
+    },
+    "rr1": {
+        "name": "Wet Days",
+        "unit": "Number of days",
+        "description": "A Wet Day is a day when the daily precipitation amount reaches or exceeds 1 mm. Formula: RRsum ≥ 1mm",
+        "tech_description": "Test test",
+        "legend_min": 80,
+        "legend_max": 200,
+        "legend_colorbar": "linear-gradient(to left, rgb(166, 97, 26) 0%, rgb(223, 194, 125) 25%, rgb(245, 245, 245) 50%, rgb(128, 205, 193) 75%, rgb(1, 133, 113) 100%)"
+    },
+    "gdd15": {
+        "name": "Growing Degree Days (Base 15°C)",
+        "unit": "Celsius Degrees",
+        "description": "Growing Degree Days (GDD) is a climate index that quantifies the accumulation of heat in a specific location over time, helping to predict plant growth and development. Formula: (Tmax - Tmin) / 2 - Tbase if (Tmax - Tmin) / 2 > Tbase, else 0",
+        "tech_description": "Test test",
+        "legend_min": 0,
+        "legend_max": 1400,
+        "legend_colorbar": "linear-gradient(to right, rgb(44, 123, 176) 0%, rgb(171, 217, 233) 25%, rgb(255, 255, 191) 50%, rgb(253, 174, 97) 75%, rgb(215, 25, 28) 100%)"
+    }
 }

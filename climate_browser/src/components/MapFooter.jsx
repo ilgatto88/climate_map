@@ -1,7 +1,7 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import MapFooterItem from "./MapFooterItem";
+import { useDispatch, useSelector } from "react-redux";
 import { changeCategory } from "../features/categorySlice";
+import MapFooterItem from "./MapFooterItem";
 
 import "../styles/MapFooter.css";
 

@@ -83,3 +83,8 @@ li {
 .category-menu-item.current::before {
     content: '\1F5F9';
 }
+
+.category-svg {
+    height: 25px;
+    width: 25px;
+}

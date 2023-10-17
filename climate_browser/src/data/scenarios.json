@@ -2,12 +2,16 @@
     "rcp26": {
         "primaryName": "Low Carbon",
         "secondaryName": "Less climate change",
+        "rcpName": "RCP 2.6",
+        "description": "RCP2.6 (Representative Concentration Pathway 2.6) is a low-emission scenario aimed at limiting global warming to well below 2 degrees Celsius above pre-industrial levels. It involves stringent greenhouse gas reduction measures and represents a future where immediate actions are taken to stabilize atmospheric concentrations and mitigate severe climate change impacts.",
         "backgroundColor": "#2db31e",
         "borderColor": "#2db31e"
     },
     "rcp85": {
         "primaryName": "High Carbon",
         "secondaryName": "More climate change",
+        "rcpName": "RCP 8.5",
+        "description": "RCP8.5 (Representative Concentration Pathway 8.5) is a high-emission scenario characterized by a lack of significant climate mitigation efforts. It envisions a future where greenhouse gas emissions continue to rise, resulting in substantial global warming and potentially severe climate change consequences.",
         "backgroundColor": "#db3535",
         "borderColor": "#db3535"
     }

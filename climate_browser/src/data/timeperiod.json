@@ -1,0 +1,14 @@
+{
+    "1991-2020": {
+        "name": "Recent past (1991-2020)",
+        "description": "This time period is often referred to as the current 'climate normal,' characterized by accelerating climate change, extreme weather events, and international efforts to mitigate its impacts."
+    },
+    "2036-2065": {
+        "name": "Near future (2036-2065)",
+        "description": "This time period is projected to be a critical phase in the battle against climate change, with global efforts focused on implementing sustainable practices and technologies to mitigate the worst impacts of a warming planet."
+    },
+    "2071-2100": {
+        "name": "Distant future (2071-2100)",
+        "description": "In this time period, humanity faces a pivotal moment in its response to climate change, with the outcome heavily dependent on our ability to curb emissions, adapt to a changing world, and prioritize environmental sustainability."
+    }
+}

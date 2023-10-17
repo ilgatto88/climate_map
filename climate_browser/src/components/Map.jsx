@@ -14,19 +14,24 @@ import "../styles/Map.css";
 
 export default function Map() {
   const mapContainerRef = useRef(null);
-  const mapCenter = [47.7, 13.8];
+  const mapCenter = [47.57, 13.8];
 
   const southWest = L.latLng(45, 8);
   const northEast = L.latLng(50, 20);
   const bounds = L.latLngBounds(southWest, northEast);
 
   const geoServerBaseUrl = "http://localhost/geoserver";
-  const OSMUrl = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+  const OSMUrl =
+    "https://{s}.tile.jawg.io/jawg-dark/{z}/{x}/{y}{r}.png?access-token=3WoVLx4RVggqQsysO2MAB9y3YnNiZAy6aTdYbSGA678uwTEvTj0omMISBQ16CgfZ";
+  //  "https://{s}.tile.jawg.io/jawg-dark/{z}/{x}/{y}{r}.png?access-token=3WoVLx4RVggqQsysO2MAB9y3YnNiZAy6aTdYbSGA678uwTEvTj0omMISBQ16CgfZ";
   const ATMunUrl = `${geoServerBaseUrl}/atmun/gwc/service/wms`;
   const ATClimateMapsUrl = `${geoServerBaseUrl}/at_climate_maps/gwc/service/wms`;
   const ATMunWFSBaseUrl = `${geoServerBaseUrl}/atmun/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=atmun%3ASTATISTIK_AUSTRIA_GEM_20230101&srsName=epsg:4326&outputFormat=application%2Fjson&cql_filter=g_id=`;
 
   const sidebarState = useSelector((state) => state.sidebarHandler.value);
+  const scenario = useSelector((state) => state.scenarioHandler.value);
+  const futurePeriod = useSelector((state) => state.futurePeriodHandler.value);
+  const parameter = useSelector((state) => state.parameterHandler.value);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -53,9 +58,7 @@ export default function Map() {
       .addTo(map);
 
     // OpenStreetMap
-    L.tileLayer(OSMUrl, {
-      attribution: "Map data © OpenStreetMap contributors",
-    }).addTo(map);
+    L.tileLayer(OSMUrl, { attribution: "", opacity: 1 }).addTo(map);
 
     // Austrian municipalities
     const ATMunLayer = L.tileLayer
@@ -70,10 +73,10 @@ export default function Map() {
     // Climate data
     L.tileLayer
       .wms(ATClimateMapsUrl, {
-        layers: "at_climate_maps:spartacus_test_colors2",
+        layers: `at_climate_maps:oeks_${scenario}_${parameter}_mean_AT_${futurePeriod}`,
         format: "image/png",
         transparent: true,
-        opacity: 0.5,
+        opacity: 0.7,
       })
       .addTo(map);
 
@@ -111,7 +114,7 @@ export default function Map() {
     return () => {
       map.remove();
     };
-  }, []);
+  }, [scenario, parameter, futurePeriod]);
 
   useEffect(() => {
     const mapContainer = mapContainerRef.current;
@@ -127,7 +130,7 @@ export default function Map() {
     <div
       ref={mapContainerRef}
       className="map-container"
-      style={{ width: "100%", height: "85%", top: "7%" }}
+      style={{ width: "100%", height: "85%", top: "0%" }}
     />
   );
 }

@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const parameterReducerSlice = createSlice({
   name: "parameterHandler",
   initialState: {
-    value: "Mean temperature [°C]",
+    value: "tm",
   },
   reducers: {
     changeParameter: (state, action) => {

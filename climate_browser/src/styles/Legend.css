@@ -1,0 +1,28 @@
+.legend {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.legend-title {
+    text-align: left;
+    color: white;
+}
+
+.legend-content {
+    display: flex;
+    gap: 5px;
+}
+
+.legend-min,
+.legend-max {
+    line-height: 15px;
+    color: white;
+}
+
+.colorbar {
+    display: block;
+    width: 175px;
+    height: 15px;
+    border: none;
+}

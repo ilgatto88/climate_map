@@ -7,6 +7,7 @@ import historicalPeriodHandler from "./features/variables/historicalPeriodSlice"
 import parameterHandler from "./features/variables/parameterSlice";
 import categoryHandler from "./features/categorySlice";
 import historicalDataHandler from "./features/historicalDataSlice";
+import overlayVisibilityHandler from "./features/overlaySlice";
 
 export default configureStore({
   reducer: {
@@ -18,5 +19,6 @@ export default configureStore({
     parameterHandler,
     categoryHandler,
     historicalDataHandler,
+    overlayVisibilityHandler,
   },
 });

@@ -1,6 +1,23 @@
 const TENSION = 0.3;
 const WHITE_DIAGRAM_COLOR = "rgba(255, 255, 255, 0.8)";
 
+function lineChartAnnotationPaddingCalculator(minimum, maximum) {
+  if (maximum < 20) {
+    return 0.5;
+  }
+
+  if (maximum < 50) {
+    return 1;
+  }
+  if (maximum < 100) {
+    return 2;
+  }
+  if (maximum < 200) {
+    return 3;
+  }
+  return 3.5;
+}
+
 export function getChartOptions({
   parameterName,
   chartMinimum,
@@ -113,7 +130,9 @@ export function getChartOptions({
           label1: {
             type: "label",
             xValue: annotationCenter,
-            yValue: chartMaximum - 0.7,
+            yValue:
+              chartMaximum -
+              lineChartAnnotationPaddingCalculator(chartMinimum, chartMaximum),
             color: "rgb(255, 255, 255)",
             content: [`${futurePeriodStart}-${futurePeriodEnd}`],
             font: {
@@ -176,24 +195,20 @@ export function range(start, end) {
 }
 
 export function prepareLineDiagramData(
-  scenario,
-  analysisTimeRange,
-  historicalRawData,
-  ensembleTimeRange,
+  historicalData,
   ensembleData,
-  hideHistoricalData,
-  alldata
+  hideHistoricalData
 ) {
-  const historicalData = insertNullValues(
-    historicalRawData,
-    analysisTimeRange,
+  const historicalFilledData = insertNullValues(
+    historicalData.rawData,
+    historicalData.analysisTimeRange,
     1961,
     2100
   );
 
   const ensembleMedian = insertNullValues(
     ensembleData.statistics1D.median,
-    ensembleTimeRange,
+    ensembleData.ensembleTimeRange,
     1961,
     2100
   );
@@ -205,7 +220,7 @@ export function prepareLineDiagramData(
     label: "Historical",
     borderColor: "#778ed9",
     backgroundColor: "#778ed9",
-    data: historicalData,
+    data: historicalFilledData,
     fill: false,
     pointRadius: 1,
     borderWidth: 2,
@@ -223,8 +238,13 @@ export function prepareLineDiagramData(
     tension: TENSION,
   });
 
-  Object.keys(alldata).forEach((key) => {
-    const data = insertNullValues(alldata[key], ensembleTimeRange, 1961, 2100);
+  Object.keys(ensembleData.rawData).forEach((key) => {
+    const data = insertNullValues(
+      ensembleData.rawData[key],
+      ensembleData.ensembleTimeRange,
+      1961,
+      2100
+    );
     const obj = {
       data,
       label: `${key}_remove`,
