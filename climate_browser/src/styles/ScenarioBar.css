@@ -1,11 +1,16 @@
+.scenario-timeline-bar-container {
+    display: flex;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    bottom: 9%;
+}
+
 .scenario-timeline-bar {
     display: flex;
     flex-direction: row;
     gap: 20px;
-    position: relative;
-    bottom: 9%;
-    width: auto;
-    margin: 0 auto;
+    margin: auto;
     padding: 5px 10px 10px 10px;
     background-color: rgb(51, 51, 51);
     color: white;
