@@ -8,11 +8,16 @@
 
 .offcanvas.offcanvas-end {
      width: 500px !important;
-     height: 83.7%;
+     height: 83%;
      background-color: var(--grey);
      color: var(--white);
      border-color: var(--white);
-     top: 8.3% !important;
+     top: 8.4% !important;
+     overflow-y: scroll !important;
+}
+
+.offcanvas-body {
+     overflow: visible;
 }
 
 .offcanvas-header {
@@ -39,7 +44,7 @@
 .location-data {
      display: flex;
      flex-direction: row;
-     gap: 20px;
+     gap: 10px;
 }
 
 .value-historical,
@@ -66,7 +71,14 @@
      margin-bottom: 0;
 }
 
-.value-change {
-     padding-top: 0;
-     margin-top: -10px;
+.fa-arrow-right,
+.fa-arrow-left {
+     color: white;
+     margin-top: 5px;
+}
+
+.arrow-value {
+     display: flex;
+     flex-direction: row;
+     gap: 10px;
 }

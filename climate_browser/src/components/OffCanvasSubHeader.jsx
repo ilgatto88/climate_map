@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ParameterData from "../data/parameters.json";
 import ScenarioData from "../data/scenarios.json";
 import { getNumberWithSign } from "../utils/cosmetics";
+import ChangeValue from "./ChangeValue";
 
 export default function OffCanvasSubHeader({
   historicalValue,
@@ -34,23 +35,30 @@ export default function OffCanvasSubHeader({
       <div className="location-data">
         <div className="value-historical">
           <div className="time-range text-scenario">{historicalPeriod}</div>
-          <span className="value text-yellow">{historicalValue}</span>
+          <ChangeValue
+            value={historicalValue}
+            unit={ParameterData[parameter].unit_short}
+          />
           {futurePeriod !== "1991-2020" && (
             <>
               {changeText}
-              <div className="value-change">
-                {getNumberWithSign(climateChangeValue)}
-              </div>
+              <ChangeValue
+                value={getNumberWithSign(climateChangeValue)}
+                unit={ParameterData[parameter].unit_short}
+              />
             </>
           )}
         </div>
         {futurePeriod !== "1991-2020" && (
           <div className="value-ensemble">
             <div className="time-range text-scenario">{futurePeriod}</div>
-            <span className="text-white">
+            <div className="arrow-value">
               <FontAwesomeIcon icon={faArrowRight} />{" "}
-            </span>
-            <span className="value text-yellow">{ensembleValue}</span>
+              <ChangeValue
+                value={ensembleValue}
+                unit={ParameterData[parameter].climate_change_unit}
+              />
+            </div>
           </div>
         )}
       </div>

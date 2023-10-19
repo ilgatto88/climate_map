@@ -2,6 +2,8 @@
     "tm": {
         "name": "Mean temperature",
         "unit": "Celsius Degrees",
+        "unit_short": "°C",
+        "climate_change_unit": "°C",
         "description": "Mean temperature is the daily average temperature, calculated from the minimum and maximum temperature in this case.",
         "tech_description": "Test test",
         "legend_min": -10,
@@ -11,6 +13,8 @@
     "su25": {
         "name": "Summer Days",
         "unit": "Number of days",
+        "unit_short": "",
+        "climate_change_unit": "",
         "description": "A Summer Day is a day when the daily maximum temperature is equal or higher than 25 Celsius degrees. Formula: Tmax ≥ 25°C",
         "tech_description": "Test test",
         "legend_min": 0,
@@ -20,6 +24,8 @@
     "su30": {
         "name": "Hot Days",
         "unit": "Number of days",
+        "unit_short": "",
+        "climate_change_unit": "",
         "description": "A Hot Day is a day when the daily maximum temperature is equal or higher than 30 Celsius degrees. Formula: Tmax ≥ 30°C",
         "tech_description": "Test test",
         "legend_min": 0,
@@ -29,6 +35,8 @@
     "fd0": {
         "name": "Frost Days",
         "unit": "Number of days",
+        "unit_short": "",
+        "climate_change_unit": "",
         "description": "A Frost Day is a day when the daily minimum temperature is lower than 0 Celsius degrees. Formula: Tmin < 0°C",
         "tech_description": "Test test",
         "legend_min": 30,
@@ -38,6 +46,8 @@
     "rr1": {
         "name": "Wet Days",
         "unit": "Number of days",
+        "unit_short": "",
+        "climate_change_unit": "",
         "description": "A Wet Day is a day when the daily precipitation amount reaches or exceeds 1 mm. Formula: RRsum ≥ 1mm",
         "tech_description": "Test test",
         "legend_min": 80,
@@ -47,6 +57,8 @@
     "gdd15": {
         "name": "Growing Degree Days (Base 15°C)",
         "unit": "Celsius Degrees",
+        "unit_short": "°C",
+        "climate_change_unit": "°C",
         "description": "Growing Degree Days (GDD) is a climate index that quantifies the accumulation of heat in a specific location over time, helping to predict plant growth and development. Formula: (Tmax - Tmin) / 2 - Tbase if (Tmax - Tmin) / 2 > Tbase, else 0",
         "tech_description": "Test test",
         "legend_min": 0,
