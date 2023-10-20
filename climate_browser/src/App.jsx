@@ -5,7 +5,7 @@ import Map from "./components/Map";
 import MapFooter from "./components/MapFooter";
 import MapOverlay from "./components/MapOverlay";
 
-import "./styles/App.css";
+import "./App.css";
 import ScenarioBar from "./components/ScenarioBar";
 
 function App() {

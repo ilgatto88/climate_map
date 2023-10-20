@@ -1,13 +1,15 @@
+@import url("colors.css");
+
 .navbar-main {
     display: flex;
     align-items: top;
-    background-color: rgb(51, 51, 51);
+    background-color: var(--darkgrey);
     color: white;
     box-sizing: border-box;
     font-weight: 400;
     text-align: center;
     padding: 16px 0px 5px 0px;
-    border-bottom: 1px solid rgb(138, 138, 138);
+    border-bottom: 1px solid var(--lightgrey);
 }
 
 .menu {
@@ -24,7 +26,7 @@
 
 .menu-wrapper {
     display: none;
-    background-color: rgb(0, 0, 0, .55);
+    background-color: var(--darkgrey);
     position: absolute;
     top: 82px;
     z-index: 99999;
@@ -46,12 +48,12 @@
     width: 100%;
     padding-left: 15px;
     text-decoration: none;
-    color: white;
+    color: var(--white);
     padding-bottom: 10px;
 }
 
 .menu-item:hover {
-    background-color: #fdb615;
+    background-color: var(--yellow);
 }
 
 
@@ -60,12 +62,12 @@
 }
 
 .biginfo>svg {
-    color: orange;
+    color: var(--yellow);
     font-size: 20px;
 }
 
 .biginfo>svg:hover {
-    color: white;
+    color: var(--white);
 }
 
 .mapinfo {

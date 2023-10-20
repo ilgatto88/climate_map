@@ -1,3 +1,5 @@
+@import url("colors.css");
+
 .legend {
     display: flex;
     flex-direction: column;
@@ -5,8 +7,8 @@
 }
 
 .legend-title {
-    text-align: left;
-    color: white;
+    text-align: center;
+    color: var(--white);
 }
 
 .legend-content {
@@ -17,7 +19,7 @@
 .legend-min,
 .legend-max {
     line-height: 15px;
-    color: white;
+    color: var(--white);
 }
 
 .colorbar {

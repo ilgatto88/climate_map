@@ -7,5 +7,4 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    /* Set the height of the whole app */
 }

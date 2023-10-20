@@ -1,15 +1,9 @@
-:root {
-     --blue: rgb(61, 180, 229);
-     --grey: rgba(99, 88, 88, 0.8);
-     --white: rgb(255, 255, 255);
-     --yellow: rgb(254, 181, 25);
-}
-
+@import url("colors.css");
 
 .offcanvas.offcanvas-end {
      width: 500px !important;
      height: 83%;
-     background-color: var(--grey);
+     background-color: var(--grey_transparent);
      color: var(--white);
      border-color: var(--white);
      top: 8.4% !important;
@@ -73,7 +67,7 @@
 
 .fa-arrow-right,
 .fa-arrow-left {
-     color: white;
+     color: var(--white);
      margin-top: 5px;
 }
 
