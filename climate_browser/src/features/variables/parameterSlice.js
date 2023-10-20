@@ -6,10 +6,7 @@ export const parameterReducerSlice = createSlice({
     value: "tm",
   },
   reducers: {
-    changeParameter: (state, action) => {
-      // eslint-disable-next-line no-param-reassign
-      state.value = action.payload;
-    },
+    changeParameter: (state, action) => ({ ...state, value: action.payload }),
   },
 });
 

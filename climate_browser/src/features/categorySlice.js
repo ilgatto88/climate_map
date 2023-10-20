@@ -6,10 +6,7 @@ export const categoryReducerSlice = createSlice({
     value: null,
   },
   reducers: {
-    changeCategory: (state, action) => {
-      // eslint-disable-next-line no-param-reassign
-      state.value = action.payload;
-    },
+    changeCategory: (state, action) => ({ ...state, value: action.payload }),
   },
 });
 

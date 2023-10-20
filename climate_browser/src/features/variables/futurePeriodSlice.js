@@ -6,10 +6,10 @@ export const futurePeriodReducerSlice = createSlice({
     value: "2036-2065",
   },
   reducers: {
-    changeFuturePeriod: (state, action) => {
-      // eslint-disable-next-line no-param-reassign
-      state.value = action.payload;
-    },
+    changeFuturePeriod: (state, action) => ({
+      ...state,
+      value: action.payload,
+    }),
   },
 });
 

@@ -6,10 +6,10 @@ export const municipalityIdReducerSlice = createSlice({
     value: "10101",
   },
   reducers: {
-    changeMunicipalityId: (state, action) => {
-      // eslint-disable-next-line no-param-reassign
-      state.value = action.payload;
-    },
+    changeMunicipalityId: (state, action) => ({
+      ...state,
+      value: action.payload,
+    }),
   },
 });
 

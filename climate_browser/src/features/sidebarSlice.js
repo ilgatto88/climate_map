@@ -6,14 +6,8 @@ export const sidebarReducerSlice = createSlice({
     value: false,
   },
   reducers: {
-    open: (state) => {
-      // eslint-disable-next-line no-param-reassign
-      state.value = true;
-    },
-    close: (state) => {
-      // eslint-disable-next-line no-param-reassign
-      state.value = false;
-    },
+    open: (state) => ({ ...state, value: true }),
+    close: (state) => ({ ...state, value: false }),
   },
 });
 

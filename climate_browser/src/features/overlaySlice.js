@@ -6,14 +6,8 @@ export const overlayReducerSlice = createSlice({
     value: false,
   },
   reducers: {
-    show: (state) => {
-      // eslint-disable-next-line no-param-reassign
-      state.value = true;
-    },
-    hide: (state) => {
-      // eslint-disable-next-line no-param-reassign
-      state.value = false;
-    },
+    show: (state) => ({ ...state, value: true }),
+    hide: (state) => ({ ...state, value: false }),
   },
 });
 

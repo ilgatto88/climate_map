@@ -6,10 +6,10 @@ export const historicalPeriodReducerSlice = createSlice({
     value: "1991-2020",
   },
   reducers: {
-    changeHistoricalPeriod: (state, action) => {
-      // eslint-disable-next-line no-param-reassign
-      state.value = action.payload;
-    },
+    changeHistoricalPeriod: (state, action) => ({
+      ...state,
+      value: action.payload,
+    }),
   },
 });
 
