@@ -1,6 +1,6 @@
 import React from "react";
 import OffCanvasLineDiag from "./components/OffCanvasLineDiag";
-import NavBar from "./components/MapHeader";
+import NavBar from "./components/NavBar";
 import Map from "./components/Map";
 import MapFooter from "./components/MapFooter";
 import MapOverlay from "./components/MapOverlay";
