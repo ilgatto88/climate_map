@@ -18,7 +18,6 @@ function ExtendedWMSTileLayer(props, ref) {
   const context = useLeafletContext();
   const tileLayerRef = useRef(null);
 
-  // eslint-disable-next-line no-unused-vars
   const getFeatureInfoUrl = (latlng) => {
     const currentRef = tileLayerRef.current;
     const point = currentRef._map.latLngToContainerPoint(
