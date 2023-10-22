@@ -58,7 +58,7 @@ export default function MapFooterItem({
       >
         <img
           className="category-svg"
-          src={`/img/${categoryName}.svg`}
+          src={`/img/icons/${categoryName}.svg`}
           alt={categoryName}
         />
       </div>
