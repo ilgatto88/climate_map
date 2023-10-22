@@ -1,0 +1,14 @@
+{
+    "API_BASE_URL": "http://127.0.0.1:8000/api/v1/",
+    "GEOSERVER_BASE_URL": "http://localhost/geoserver",
+    "OSM_LAYER": "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+    "OSM_LAYER_ATTRIBUTION": "&copy; <a href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a> contributors",
+    "DEFAULT_CLIMATE_DATA_LAYER": "at_climate_maps:oeks_rcp85_tm_mean_AT_2036-2065",
+    "MAP_CENTER": [
+        47.57,
+        13.8
+    ],
+    "MAP_BASE_ZOOMLEVEL": 8,
+    "MAP_MINIMUM_ZOOMLEVEL": 8,
+    "MAP_MAXIMUM_ZOOMLEVEL": 15
+}

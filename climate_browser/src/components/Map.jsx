@@ -12,6 +12,8 @@ import {
 
 import { swapCoordinates } from "../utils/geoserver/helpers";
 
+import Config from "../data/config.json";
+
 import "../styles/Map.css";
 
 import ExtendedWMSTileLayer from "./ExtendedWMSTileLayer";
@@ -25,15 +27,12 @@ export default function Map() {
   const southWest = L.latLng(45, 8);
   const northEast = L.latLng(50, 20);
   const bounds = L.latLngBounds(southWest, northEast);
-  const defaultClimateLayer = "at_climate_maps:oeks_rcp85_tm_mean_AT_2036-2065";
+  const defaultClimateLayer = Config.DEFAULT_CLIMATE_DATA_LAYER;
 
-  const osmToken =
-    "3WoVLx4RVggqQsysO2MAB9y3YnNiZAy6aTdYbSGA678uwTEvTj0omMISBQ16CgfZ";
-  const osmLayer = `https://{s}.tile.jawg.io/jawg-dark/{z}/{x}/{y}{r}.png?access-token=${osmToken}`;
-  const geoServerBaseUrl = "http://localhost/geoserver";
-  const climateDataUrl = `${geoServerBaseUrl}/at_climate_maps/wms`;
-  const municipalityBaseUrl = `${geoServerBaseUrl}/atmun/gwc/service/wms`;
-  const municipalityWFSUrl = `${geoServerBaseUrl}/atmun/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=atmun%3ASTATISTIK_AUSTRIA_GEM_20230101&srsName=epsg:4326&outputFormat=application%2Fjson&cql_filter=g_id=`;
+  const osmLayer = Config.OSM_LAYER;
+  const climateDataUrl = `${Config.GEOSERVER_BASE_URL}/at_climate_maps/wms`;
+  const municipalityBaseUrl = `${Config.GEOSERVER_BASE_URL}/atmun/gwc/service/wms`;
+  const municipalityWFSUrl = `${Config.GEOSERVER_BASE_URL}/atmun/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=atmun%3ASTATISTIK_AUSTRIA_GEM_20230101&srsName=epsg:4326&outputFormat=application%2Fjson&cql_filter=g_id=`;
 
   const scenario = useSelector((state) => state.scenarioHandler.value);
   const futurePeriod = useSelector((state) => state.futurePeriodHandler.value);
@@ -56,7 +55,7 @@ export default function Map() {
   };
 
   useEffect(() => {
-    if (municipalityId !== "") {
+    if (polyline.length > 0 && municipalityId !== "") {
       fetchPolyline(municipalityId);
     }
   }, [municipalityId]);
@@ -64,6 +63,8 @@ export default function Map() {
   useEffect(() => {
     if (!sideBarState) {
       setPolyline([]);
+    } else {
+      fetchPolyline(municipalityId);
     }
   }, [sideBarState]);
 
@@ -85,10 +86,10 @@ export default function Map() {
 
   return (
     <MapContainer
-      center={[47.57, 13.8]}
-      zoom={8}
-      minZoom={8}
-      maxZoom={15}
+      center={Config.MAP_CENTER}
+      zoom={Config.MAP_BASE_ZOOMLEVEL}
+      minZoom={Config.MAP_MINIMUM_ZOOMLEVEL}
+      maxZoom={Config.MAP_MAXIMUM_ZOOMLEVEL}
       doubleClickZoom={false}
       boxZoom={false}
       keyboard={false}
@@ -97,7 +98,11 @@ export default function Map() {
       maxBoundsViscosity={1.0}
       ref={mapContainerRef}
     >
-      <TileLayer attribution="" url={osmLayer} />
+      <TileLayer
+        attribution={Config.OSM_LAYER_ATTRIBUTION}
+        url={osmLayer}
+        className="osmlayer"
+      />
       <ExtendedWMSTileLayer
         url={municipalityBaseUrl}
         layers="atmun:STATISTIK_AUSTRIA_GEM_20230101"

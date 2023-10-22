@@ -5,7 +5,6 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import { Line } from "react-chartjs-2";
 import { useDispatch, useSelector } from "react-redux";
 
-// External Libraries (chart.js)
 import {
   CategoryScale,
   Chart as ChartJS,
@@ -19,12 +18,14 @@ import {
   Tooltip,
 } from "chart.js";
 import annotationPlugin from "chartjs-plugin-annotation";
-import { close } from "../features/sidebarSlice";
 
 // Custom Utils
 import "bootstrap/dist/css/bootstrap.css";
 import "../styles/OffCanvasLineDiag.css";
 import OffCanvasSubHeader from "./OffCanvasSubHeader";
+
+import { close } from "../features/sidebarSlice";
+import Config from "../data/config.json";
 
 import {
   backgroundColorPlugin,
@@ -69,10 +70,9 @@ export default function OffCanvasLineDiag() {
   const parameter = useSelector((state) => state.parameterHandler.value);
   const dispatch = useDispatch();
 
-  const API_BASE = "http://127.0.0.1:8000/api/v1/";
-  const API_HISTORICAL_ENDPOINT = `${API_BASE}municipalitydata/historical/${parameter}/${municipalityId}`;
-  const API_SCENARIO_ENDPOINT = `${API_BASE}municipalitydata/scenario/${scenario}/${parameter}/${municipalityId}`;
-  const API_META_ENDPOINT = `${API_BASE}municipalities/${municipalityId}`;
+  const API_HISTORICAL_ENDPOINT = `${Config.API_BASE_URL}municipalitydata/historical/${parameter}/${municipalityId}`;
+  const API_SCENARIO_ENDPOINT = `${Config.API_BASE_URL}municipalitydata/scenario/${scenario}/${parameter}/${municipalityId}`;
+  const API_META_ENDPOINT = `${Config.API_BASE_URL}municipalities/${municipalityId}`;
 
   useEffect(() => {
     fetchData(API_HISTORICAL_ENDPOINT).then((data) =>
@@ -158,8 +158,7 @@ export default function OffCanvasLineDiag() {
       onHide={() => dispatch(close())}
       placement="end"
       backdrop={false}
-      // eslint-disable-next-line react/jsx-boolean-value
-      scroll={true}
+      scroll
     >
       <Offcanvas.Header closeButton>
         <Offcanvas.Title>
