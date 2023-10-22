@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
 
+import "../styles/VariableDescription.css";
+
 function VariableDescription({ title, subtitle, description }) {
   return (
     <div className="card">
