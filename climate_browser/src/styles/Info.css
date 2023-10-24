@@ -1,0 +1,60 @@
+@import url("colors.css");
+
+.overlay-container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--grey_transparent);
+    z-index: 1000000;
+    margin: auto;
+}
+
+.map-overlay {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    height: auto;
+    background-color: var(--grey_transparent);
+    z-index: 9999999;
+    padding: 30px 50px 20px 20px;
+    border-radius: 5px;
+    border: 1px solid var(--white);
+    gap: 20px;
+}
+
+.closeArea>button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    height: 30px;
+    width: 30px;
+    z-index: 2;
+    background-color: var(--yellow);
+    color: var(--darkgrey);
+    border: none;
+    box-shadow: var(--darkgrey) 0px 3px 10px;
+}
+
+.overlay-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex: 1;
+    max-width: 50%;
+}
+
+.overlay-right {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    max-width: 50%;
+}
+
+.formula {
+    margin-top: 20px;
+    max-height: 80px;
+}
