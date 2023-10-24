@@ -103,7 +103,7 @@ export default function OffCanvasLineDiag() {
   if (sidebarState) {
     const offCanvasCloseButton = document.querySelector(".btn-close");
     if (offCanvasCloseButton !== null) {
-      offCanvasCloseButton.classList.add("btn-close-white");
+      offCanvasCloseButton.classList.add("btn-close-yellow");
     }
   }
 

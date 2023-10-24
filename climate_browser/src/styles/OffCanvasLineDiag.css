@@ -80,3 +80,7 @@
 canvas {
      max-height: 400px;
 }
+
+.btn-close-yellow {
+     background-color: var(--yellow) !important;
+}
