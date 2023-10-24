@@ -76,3 +76,7 @@
      flex-direction: row;
      gap: 10px;
 }
+
+canvas {
+     max-height: 400px;
+}
