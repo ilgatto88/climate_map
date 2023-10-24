@@ -16,6 +16,11 @@ jobs:
       - name: Run tests and collect coverage
         working-directory: ./climate_browser
         run: npm run test
+      - name: Upload code coverage html report
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-summary
+          path: coverage
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         env:
