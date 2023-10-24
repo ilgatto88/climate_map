@@ -6,4 +6,5 @@ module.exports = {
   },
   collectCoverage: true,
   coverageReporters: ["text", "cobertura"],
+  collectCoverageFrom: ["src/**", "!src/store.js"],
 };
