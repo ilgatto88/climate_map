@@ -1,4 +1,3 @@
-// Forces signing on a number, returned as a string
 export function getNumberWithSign(theNumber) {
   if (theNumber > 0) {
     return `+${theNumber}`;

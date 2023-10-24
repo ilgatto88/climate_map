@@ -1,18 +1,22 @@
-/* eslint-disable import/extensions */
-import { describe, it } from "mocha";
-import { assert } from "chai";
-import { getNumberWithSign } from "../src/utils/cosmetics.js";
+import { describe, expect, it } from "@jest/globals";
+
+import { getNumberWithSign } from "../src/utils/cosmetics";
 
 describe("Converting numeric value to string", () => {
   it("Takes 5 as input and returns +5 as string", () => {
-    assert.equal(getNumberWithSign(5), "+5");
+    const input = 5;
+    const output = "+5";
+    expect(getNumberWithSign(input)).toEqual(output);
   });
-
   it("Takes -1 as input and returns -1 as string", () => {
-    assert.equal(getNumberWithSign(-1), "-1");
+    const input = -1;
+    const output = "-1";
+    expect(getNumberWithSign(input)).toEqual(output);
   });
 
   it("Takes 0 as input and returns 0 as string", () => {
-    assert.equal(getNumberWithSign(0), "0");
+    const input = 0;
+    const output = "0";
+    expect(getNumberWithSign(input)).toEqual(output);
   });
 });
