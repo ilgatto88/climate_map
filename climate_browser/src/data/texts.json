@@ -1,0 +1,22 @@
+{
+    "project_motivation": {
+        "name": "Project Motivation",
+        "description": "Welcome to the ClimATe Atlas for Austria, a project born out of a meteorologist's passion for climate data and a self-taught web developer's curiosity. Inspired by the <a href='https://climateatlas.ca/map/canada' target='_blank'>Canadian Climate Atlas</a>, this initiative was crafted as a fascinating challenge. When the time came to choose a final project for <a href='https://www.edx.org/certificates/professional-certificate/harvardx-computer-science-for-web-programming' target='_blank'>Harward's edX Computer Science for Web Programming</a> course, it was clear that bringing this idea to life was the perfect opportunity to blend climatology and technology, resulting in this dynamic and informative Climate Atlas."
+    },
+    "data_source": {
+        "name": "Data Source",
+        "description": "The climate data sources are a blend of trusted origins. The timeseries data is primarily derived from the <a href='https://www.zamg.ac.at/cms/de/forschung/klima/klimatografien/spartacus' target='_blank'>SPARTACUS</a> gridded dataset by <a href='https://www.zamg.ac.at/cms/de/aktuell' target='_blank'>ZAMG</a> (Austrian Meteorological and Geophysical Institute) and supplemented by findings from the <a href='https://www.bmk.gv.at/themen/klima_umwelt/klimaschutz/anpassungsstrategie/publikationen/oeks15.html' target='_blank'>ÖKS15</a> and <a href='https://ccca.ac.at/wissenstransfer/starc-impact-guideline' target='_blank'>STARC-Impact</a> projects. The geographical boundaries, such as municipality shapefiles, are official records provided by the <a href='https://www.data.gv.at/katalog/dataset/stat_gliederung-osterreichs-in-gemeinden14f53' target='_blank'>Austrian government</a>, ensuring the accuracy and reliability of our data. All data sources reflect the conditions in 2023."
+    },
+    "features_user_instructions": {
+        "name": "Features & User Instructions",
+        "description": "For user guidance, the application offers several interactive features. Users have the flexibility to customize their view by choosing climate scenarios, future periods, and climate parameters at the application's footer. The header at the top of the page dynamically updates to show the selected climate parameter, scenario, and future period, ensuring users are constantly informed about their choices. The interactive map of Austria allows users to explore the region. By clicking on any part of the map, a sidebar becomes visible, which presents a comprehensive line diagram depicting climate data trends for the selected municipality. This feature spans from 1970 to 2100, offering users a detailed insight into climate changes specific to their area of interest."
+    },
+    "technologies_used": {
+        "name": "Technologies Used",
+        "description": "The front end was crafted using <a href='https://react.dev/' target='_blank'>React</a> and leveraged the power of <a href='https://react-redux.js.org/' target='_blank'>React Redux</a> for state management. To create the interactive map, <a href='https://leafletjs.com/' target='_blank'>Leaflet</a> was integrated, while the WMS tiles are provided by a containerized <a href='https://geoserver.org/' target='_blank'>GeoServer</a> instance. For dynamic chart visualizations, the project utilized the capabilities of <a href='https://www.chartjs.org/' target='_blank'>Chart.js</a>."
+    },
+    "feedback_support": {
+        "name": "Feedback & Support",
+        "description": "Link to the <a href='https://github.com/ilgatto88/climate_map/issues' target='_blank'>GitHub</a> repository."
+    }
+}
