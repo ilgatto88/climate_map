@@ -26,7 +26,7 @@ export default function OffCanvasSubHeader({
     <div className="d-flex flex-column ms-3">
       <h3 className="text-main-name mb-0">Projected change in mean</h3>
       <h2 className="text-main-value mb-0">{ParameterData[parameter].name}</h2>
-      <h4 className="text-scenario mt-0 mb-4">
+      <h4 className="text-scenario mt-0 mb-3">
         {ScenarioData[scenario].primaryName}{" "}
         <FontAwesomeIcon icon={faArrowRight} />{" "}
         {ScenarioData[scenario].secondaryName}
