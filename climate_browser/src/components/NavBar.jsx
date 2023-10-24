@@ -11,7 +11,8 @@ import { useSelector, useDispatch } from "react-redux";
 import ParameterData from "../data/parameters.json";
 import ScenarioData from "../data/scenarios.json";
 import "../styles/NavBar.css";
-import { show } from "../features/overlaySlice";
+import { showInfo } from "../features/infoSlice";
+import { showAbout } from "../features/aboutSlice";
 import Legend from "./Legend";
 
 function NavBar() {
@@ -23,6 +24,11 @@ function NavBar() {
 
   const toggleMenu = () => {
     setMenuOpen(!isMenuOpen);
+  };
+
+  const toggleAbout = () => {
+    dispatch(showAbout());
+    toggleMenu();
   };
 
   return (
@@ -43,26 +49,41 @@ function NavBar() {
         </div>
         <div className={`menu-wrapper ${isMenuOpen ? "open" : ""}`}>
           <ul>
-            <a className="menu-item" href="/">
-              MAP
+            <a
+              className="menu-item"
+              href="http://127.0.0.1:8000/docs"
+              target="_blank"
+              rel="noreferrer"
+            >
+              ClimATe API
             </a>
-            <a className="menu-item" href="http://127.0.0.1:8000/docs">
-              API
+            <a className="menu-item" href="/" target="_blank" rel="noreferrer">
+              ClimATe Atlas
             </a>
-            <a className="menu-item" href="/about">
-              ABOUT
-            </a>
+            <div
+              className="menu-item"
+              onClick={() => {
+                toggleAbout();
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === "Space") {
+                  toggleAbout();
+                }
+              }}
+            >
+              About the Atlas
+            </div>
           </ul>
         </div>
       </nav>
       <div
         className="biginfo"
         onClick={() => {
-          dispatch(show());
+          dispatch(showInfo());
         }}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === "Space") {
-            toggleMenu();
+            dispatch(showInfo());
           }
         }}
       >
