@@ -5,6 +5,6 @@ module.exports = {
     "^.+\\.(js|jsx)$": "babel-jest",
   },
   collectCoverage: true,
-  coverageReporters: ["text", "cobertura", "lcov", "text-summary"],
+  coverageReporters: ["text", "cobertura", "text-summary"],
   collectCoverageFrom: ["src/**", "!src/store.js"],
 };
