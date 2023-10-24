@@ -11,6 +11,7 @@ jobs:
         with:
           node-version: 20
       - name: Install dependencies
+        working-directory: ./climate_browser
         run: npm install
       - name: Run tests and collect coverage
         run: npm run test
