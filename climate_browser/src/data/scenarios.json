@@ -11,7 +11,7 @@
         "primaryName": "High Carbon",
         "secondaryName": "More climate change",
         "rcpName": "RCP 8.5",
-        "description": "RCP8.5 (Representative Concentration Pathway 8.5) is a high-emission scenario characterized by a lack of significant climate mitigation efforts. It envisions a future where greenhouse gas emissions continue to rise, resulting in substantial global warming and potentially severe climate change consequences.",
+        "description": "RCP8.5 (Representative Concentration Pathway 8.5) is a high-emission scenario where greenhouse gas emissions continue to rise, resulting in substantial global warming and potentially severe climate change consequences.",
         "backgroundColor": "#db3535",
         "borderColor": "#db3535"
     }
