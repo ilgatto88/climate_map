@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import PropTypes from "prop-types";
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { changeParameter } from "../features/variables/parameterSlice";
 
@@ -31,8 +31,11 @@ export default function MapFooterItem({
   expanded,
   toggleCategory,
 }) {
+  const [isExpanded, setExpanded] = useState(expanded);
+
   const dispatch = useDispatch();
   const handleClickOnCategory = () => {
+    setExpanded(!isExpanded);
     toggleCategory(categoryName);
   };
 
@@ -67,7 +70,7 @@ export default function MapFooterItem({
       </div>
       <ul
         className={`category-menu category-${categoryName} ${
-          expanded ? "expanded" : ""
+          isExpanded ? "expanded" : ""
         }`}
       >
         <li
@@ -76,9 +79,13 @@ export default function MapFooterItem({
             backgroundColor: CategoryData[categoryName].headerColor,
             color: "white",
           }}
-          onClick={() => closeCategory(categoryName)}
+          onClick={() => {
+            closeCategory(categoryName);
+            setExpanded(false);
+          }}
           onKeyDown={(e) => {
             if (e.key === "Escape" || e.key === " ") {
+              setExpanded(false);
               closeCategory(categoryName);
             }
           }}
@@ -91,7 +98,7 @@ export default function MapFooterItem({
             onClick={() => {
               selectParameter(item);
               dispatch(changeParameter(item.name));
-              closeCategory(categoryName);
+              setExpanded(false);
             }}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
