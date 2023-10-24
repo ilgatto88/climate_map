@@ -27,6 +27,8 @@ import OffCanvasSubHeader from "./OffCanvasSubHeader";
 import { close } from "../features/sidebarSlice";
 import Config from "../data/config.json";
 
+import Parameters from "../data/parameters.json";
+
 import {
   backgroundColorPlugin,
   fetchData,
@@ -78,13 +80,13 @@ export default function OffCanvasLineDiag() {
     fetchData(API_HISTORICAL_ENDPOINT).then((data) =>
       setMunicipalityHistoricalData(data)
     );
-  }, [municipalityId]);
+  }, [municipalityId, parameter]);
 
   useEffect(() => {
     fetchData(API_SCENARIO_ENDPOINT).then((data) =>
       setMunicipalityScenarioData(data)
     );
-  }, [municipalityId, scenario]);
+  }, [municipalityId, scenario, parameter, futurePeriod]);
 
   useEffect(() => {
     fetchData(API_META_ENDPOINT).then((data) => setMunicipalityMeta(data));
@@ -117,11 +119,10 @@ export default function OffCanvasLineDiag() {
     municipalityScenarioData.statistics0D[futurePeriod].mean.toFixed(1);
 
   const climateChangeValue = (ensembleValue - historicalValue).toFixed(1);
-  const changeUpDownText = climateChangeValue > 0 ? "Up " : "Down";
   const changeUpDownCaret = climateChangeValue > 0 ? faCaretUp : faCaretDown;
   const changeText = (
     <div className="prehead">
-      {changeUpDownText} &nbsp; <FontAwesomeIcon icon={changeUpDownCaret} />
+      Change &nbsp; <FontAwesomeIcon icon={changeUpDownCaret} />
     </div>
   );
 
@@ -145,7 +146,7 @@ export default function OffCanvasLineDiag() {
   const futurePeriodEnd = parseInt(futurePeriod.split("-")[1], 10);
 
   const chartOptions = getChartOptions({
-    parameterName: parameter,
+    parameterName: Parameters[parameter].name,
     chartMinimum: absoluteChartMinimum,
     chartMaximum: absoluteChartMaximum,
     futurePeriodStart,
