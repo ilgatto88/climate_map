@@ -7,4 +7,5 @@ module.exports = {
   collectCoverage: true,
   coverageReporters: ["text", "cobertura", "text-summary"],
   collectCoverageFrom: ["src/**", "!src/store.js"],
+  testEnvironment: "jest-environment-jsdom",
 };
