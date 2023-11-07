@@ -4,9 +4,7 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import Card from "./Card";
-
 import { hideAbout } from "../features/aboutSlice";
-
 import texts from "../data/texts.json";
 
 const sections = Object.values(texts);

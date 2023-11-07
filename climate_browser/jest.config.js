@@ -6,6 +6,15 @@ module.exports = {
   },
   collectCoverage: true,
   coverageReporters: ["text", "cobertura", "text-summary"],
-  collectCoverageFrom: ["src/**", "!src/store.js"],
+  collectCoverageFrom: [
+    "src/components/**",
+    // "src/features/**",
+    "src/utils/**",
+    "src/App.jsx",
+    "src/main.jsx",
+  ],
   testEnvironment: "jest-environment-jsdom",
+  moduleNameMapper: {
+    "\\.(css|less|scss|sass)$": "identity-obj-proxy",
+  },
 };
