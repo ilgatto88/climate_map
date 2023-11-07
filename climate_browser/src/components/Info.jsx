@@ -19,22 +19,21 @@ function Info() {
   const parameter = useSelector((state) => state.parameterHandler.value);
   const scenario = useSelector((state) => state.scenarioHandler.value);
   const futurePeriod = useSelector((state) => state.futurePeriodHandler.value);
-
   const dispatch = useDispatch();
+
   if (!infoState) {
     return null;
   }
+
+  const handleHideInfo = () => {
+    dispatch(hideInfo());
+  };
 
   return (
     <div className="overlay-container">
       <div className="map-overlay">
         <div className="closeArea">
-          <button
-            type="button"
-            onClick={() => {
-              dispatch(hideInfo());
-            }}
-          >
+          <button type="button" onClick={handleHideInfo}>
             <FontAwesomeIcon icon={faXmark} />
           </button>
         </div>
