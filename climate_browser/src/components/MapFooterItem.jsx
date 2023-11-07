@@ -1,8 +1,10 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import PropTypes from "prop-types";
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { changeParameter } from "../features/variables/parameterSlice";
+import { changeCategory } from "../features/categorySlice";
 
 import CategoryData from "../data/categories.json";
 import ParameterData from "../data/parameters.json";
@@ -18,46 +20,22 @@ function selectParameter(item) {
     .classList.add("current");
 }
 
-function closeCategory(category) {
-  if (category !== null) {
-    document
-      .querySelector(`.category-${category}`)
-      .classList.remove("expanded");
-  }
-}
-
-export default function MapFooterItem({
-  categoryName,
-  expanded,
-  toggleCategory,
-}) {
-  const [isExpanded, setExpanded] = useState(expanded);
-
+export default function MapFooterItem({ categoryName }) {
+  const selectedCategory = useSelector((state) => state.categoryHandler.value);
   const dispatch = useDispatch();
-  const handleClickOnCategory = () => {
-    setExpanded(!isExpanded);
-    toggleCategory(categoryName);
-  };
 
-  const handleItemClick = (item) => {
-    selectParameter(item);
+  const handleClickOnCategory = () => {
+    dispatch(changeCategory(categoryName));
   };
 
   return (
-    <div
-      className="parameter-footer-item"
-      role="button"
-      onClick={handleClickOnCategory}
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          handleClickOnCategory();
-        }
-      }}
-      tabIndex={0}
-    >
+    <div className="parameter-footer-item">
       <div
         className="parameter-footer-item-icon"
+        role="button"
         style={{ backgroundColor: CategoryData[categoryName].headerColor }}
+        onClick={handleClickOnCategory}
+        tabIndex={0}
       >
         <img
           className="category-svg"
@@ -70,7 +48,7 @@ export default function MapFooterItem({
       </div>
       <ul
         className={`category-menu category-${categoryName} ${
-          isExpanded ? "expanded" : ""
+          selectedCategory === categoryName ? "expanded" : ""
         }`}
       >
         <li
@@ -80,14 +58,7 @@ export default function MapFooterItem({
             color: "white",
           }}
           onClick={() => {
-            closeCategory(categoryName);
-            setExpanded(false);
-          }}
-          onKeyDown={(e) => {
-            if (e.key === "Escape" || e.key === " ") {
-              setExpanded(false);
-              closeCategory(categoryName);
-            }
+            dispatch(changeCategory(null));
           }}
         >
           {CategoryData[categoryName].name}{" "}
@@ -98,12 +69,7 @@ export default function MapFooterItem({
             onClick={() => {
               selectParameter(item);
               dispatch(changeParameter(item.name));
-              setExpanded(false);
-            }}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                handleItemClick(item);
-              }
+              dispatch(changeCategory(null));
             }}
             key={`CategoryButton_${item.name}`}
           >
@@ -126,6 +92,4 @@ export default function MapFooterItem({
 
 MapFooterItem.propTypes = {
   categoryName: PropTypes.string.isRequired,
-  expanded: PropTypes.bool.isRequired,
-  toggleCategory: PropTypes.func.isRequired,
 };
