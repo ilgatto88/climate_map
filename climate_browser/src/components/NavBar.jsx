@@ -44,7 +44,7 @@ function NavBar() {
         }}
       >
         <div title="Menu">
-          <div>MENU</div>
+          <div id="menu-title">MENU</div>
           <FontAwesomeIcon icon={faBars} />
         </div>
         <div className={`menu-wrapper ${isMenuOpen ? "open" : ""}`}>
