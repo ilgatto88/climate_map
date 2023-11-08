@@ -1,7 +1,7 @@
 const TENSION = 0.3;
 const WHITE_DIAGRAM_COLOR = "rgba(255, 255, 255, 0.8)";
 
-function lineChartAnnotationPaddingCalculator(minimum, maximum) {
+export function lineChartAnnotationPaddingCalculator(maximum) {
   if (maximum < 20) {
     return 0.5;
   }
@@ -131,8 +131,7 @@ export function getChartOptions({
             type: "label",
             xValue: annotationCenter,
             yValue:
-              chartMaximum -
-              lineChartAnnotationPaddingCalculator(chartMinimum, chartMaximum),
+              chartMaximum - lineChartAnnotationPaddingCalculator(chartMaximum),
             color: "rgb(255, 255, 255)",
             content: [`${futurePeriodStart}-${futurePeriodEnd}`],
             font: {
