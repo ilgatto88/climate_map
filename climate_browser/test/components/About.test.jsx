@@ -57,4 +57,16 @@ describe("About Component", () => {
     // Assert that the dispatch function is called with hideAbout action
     expect(mockDispatch).toHaveBeenCalledWith(hideAbout());
   });
+
+  it("returns null when aboutState is false", () => {
+    // Mock useSelector to return false to hide the About component
+    useSelector.mockImplementation((selector) =>
+      selector({ aboutHandler: { value: false } })
+    );
+
+    const { container } = render(<About />);
+
+    // Ensure that the container is empty (i.e., no elements rendered)
+    expect(container.firstChild).toBeNull();
+  });
 });
