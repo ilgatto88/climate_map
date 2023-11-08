@@ -11,7 +11,7 @@ function MapFooter() {
     <div className="map-footer">
       <div className="parameter-footer">
         {categoryKeys.map((categoryName) => (
-          <MapFooterItem key={categoryName} categoryName={categoryName} />
+          <MapFooterItem categoryName={categoryName} />
         ))}
       </div>
     </div>
