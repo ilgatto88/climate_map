@@ -1,4 +1,5 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import {
   faArrowRight,
@@ -33,16 +34,7 @@ function NavBar() {
 
   return (
     <div className="navbar-main">
-      <nav
-        role="navigation"
-        className="menu"
-        onClick={toggleMenu}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === "Space") {
-            toggleMenu();
-          }
-        }}
-      >
+      <nav role="navigation" className="menu" onClick={toggleMenu}>
         <div title="Menu">
           <div id="menu-title">MENU</div>
           <FontAwesomeIcon icon={faBars} />
@@ -65,11 +57,6 @@ function NavBar() {
               onClick={() => {
                 toggleAbout();
               }}
-              onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === "Space") {
-                  toggleAbout();
-                }
-              }}
             >
               About the Atlas
             </div>
@@ -80,11 +67,6 @@ function NavBar() {
         className="biginfo"
         onClick={() => {
           dispatch(showInfo());
-        }}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === "Space") {
-            dispatch(showInfo());
-          }
         }}
       >
         <div>INFO</div>
