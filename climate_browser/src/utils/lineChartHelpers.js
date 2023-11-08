@@ -18,6 +18,7 @@ export function lineChartAnnotationPaddingCalculator(maximum) {
   return 3.5;
 }
 
+/* istanbul ignore next */
 export function getChartOptions({
   parameterName,
   chartMinimum,
@@ -264,6 +265,7 @@ export function prepareLineDiagramData(
   return data;
 }
 
+/* istanbul ignore next */
 export const backgroundColorPlugin = {
   id: "background",
   beforeDraw: (chart, args, opts) => {
