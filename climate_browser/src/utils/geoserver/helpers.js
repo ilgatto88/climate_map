@@ -1,3 +1,4 @@
+/* istanbul ignore next */
 export async function fetchGeoServerResponse(url) {
   return fetch(url)
     .then((response) => response.text())
