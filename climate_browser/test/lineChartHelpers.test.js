@@ -5,7 +5,10 @@ import {
   lineChartAnnotationPaddingCalculator,
   insertNullValues,
   range,
+  prepareLineDiagramData,
 } from "../src/utils/lineChartHelpers";
+
+import { historicalData, ensembleData, outData } from "./testdata";
 
 describe("Testing lineChartAnnotationPaddingCalculator", () => {
   it("takes 5 and returns 0.5", () => {
@@ -76,6 +79,27 @@ describe("Testing custom range function", () => {
     const endYear = 2005;
     const expectedOutput = [2000, 2001, 2002, 2003, 2004, 2005];
     const output = range(startYear, endYear);
+    expect(output).toEqual(expectedOutput);
+  });
+});
+
+describe("Testing prepareLineDiagramData", () => {
+  it("start and end year and returns array filled with all years in between", () => {
+    const inputHistorical = historicalData;
+    const inputEnsemble = ensembleData;
+    const hideHistoricalData = true;
+    const startYear = 1961;
+    const endYear = 1962;
+    const expectedOutput = outData;
+
+    const output = prepareLineDiagramData(
+      inputHistorical,
+      inputEnsemble,
+      hideHistoricalData,
+      startYear,
+      endYear
+    );
+    console.log(output);
     expect(output).toEqual(expectedOutput);
   });
 });
