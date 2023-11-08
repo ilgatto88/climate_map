@@ -6,6 +6,7 @@ import {
   insertNullValues,
   range,
   prepareLineDiagramData,
+  fetchData,
 } from "../src/utils/lineChartHelpers";
 
 import { historicalData, ensembleData, outData } from "./testdata";
@@ -101,5 +102,13 @@ describe("Testing prepareLineDiagramData", () => {
     );
     console.log(output);
     expect(output).toEqual(expectedOutput);
+  });
+});
+
+describe("fetchData function", () => {
+  it("should handle errors when fetching data", async () => {
+    const API_ENDPOINT = "https://example.com/nonexistent-api";
+    const data = await fetchData(API_ENDPOINT);
+    expect(data).toBeNull();
   });
 });
