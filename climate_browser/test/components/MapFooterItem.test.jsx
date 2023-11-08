@@ -1,11 +1,9 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import { describe, expect, it, jest, beforeEach } from "@jest/globals";
-import { useSelector, useDispatch, Provider } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import MapFooterItem from "../../src/components/MapFooterItem";
 import { changeCategory } from "../../src/features/categorySlice";
-import { changeParameter } from "../../src/features/variables/parameterSlice";
-import store from "../../src/store";
 import "@testing-library/jest-dom";
 
 import categories from "../../src/data/categories.json";
@@ -19,7 +17,6 @@ jest.mock("react-redux", () => ({
 // Define test data
 const categoryName = "hotweather";
 const selectedCategory = "hotweather";
-const selectedParameter = "Hot Days";
 
 // Mock the dispatch function
 const mockDispatch = jest.fn();
