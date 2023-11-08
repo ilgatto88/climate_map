@@ -10,8 +10,8 @@ module.exports = {
     "src/components/**",
     // "src/features/**",
     "src/utils/**",
-    "src/App.jsx",
-    "src/main.jsx",
+    // "src/App.jsx",
+    // "src/main.jsx",
   ],
   testEnvironment: "jest-environment-jsdom",
   moduleNameMapper: {
