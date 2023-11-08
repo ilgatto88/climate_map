@@ -197,20 +197,22 @@ export function range(start, end) {
 export function prepareLineDiagramData(
   historicalData,
   ensembleData,
-  hideHistoricalData
+  hideHistoricalData,
+  startYear,
+  endYear
 ) {
   const historicalFilledData = insertNullValues(
     historicalData.rawData,
     historicalData.analysisTimeRange,
-    1961,
-    2100
+    startYear,
+    endYear
   );
 
   const ensembleMedian = insertNullValues(
     ensembleData.statistics1D.median,
     ensembleData.ensembleTimeRange,
-    1961,
-    2100
+    startYear,
+    endYear
   );
 
   const chartData = [];
@@ -242,8 +244,8 @@ export function prepareLineDiagramData(
     const data = insertNullValues(
       ensembleData.rawData[key],
       ensembleData.ensembleTimeRange,
-      1961,
-      2100
+      startYear,
+      endYear
     );
     const obj = {
       data,
@@ -259,7 +261,7 @@ export function prepareLineDiagramData(
   });
 
   const data = {
-    labels: range(1961, 2100),
+    labels: range(startYear, endYear),
     datasets: chartData,
   };
   return data;

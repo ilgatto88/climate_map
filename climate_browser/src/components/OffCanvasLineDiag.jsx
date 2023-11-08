@@ -110,7 +110,9 @@ export default function OffCanvasLineDiag() {
   const chartData = prepareLineDiagramData(
     municipalityHistoricalData,
     municipalityScenarioData,
-    hideHistoricalData
+    hideHistoricalData,
+    1961,
+    2100
   );
 
   const historicalValue =
