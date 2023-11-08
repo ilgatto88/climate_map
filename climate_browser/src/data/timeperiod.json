@@ -1,14 +1,23 @@
 {
     "1991-2020": {
+        "id": "recentPast",
         "name": "Recent past (1991-2020)",
-        "description": "This time period is often referred to as the current 'climate normal,' characterized by accelerating climate change, extreme weather events, and international efforts to mitigate its impacts."
+        "years": "1991-2020",
+        "description": "This time period is often referred to as the current 'climate normal,' characterized by accelerating climate change, extreme weather events, and international efforts to mitigate its impacts.",
+        "buttonOutline": true
     },
     "2036-2065": {
+        "id": "nearFuture",
         "name": "Near future (2036-2065)",
-        "description": "This time period is projected to be a critical phase in the battle against climate change, with global efforts focused on implementing sustainable practices and technologies to mitigate the worst impacts of a warming planet."
+        "years": "2036-2065",
+        "description": "This time period is projected to be a critical phase in the battle against climate change, with global efforts focused on implementing sustainable practices and technologies to mitigate the worst impacts of a warming planet.",
+        "buttonOutline": false
     },
     "2071-2100": {
+        "id": "distantFuture",
         "name": "Distant future (2071-2100)",
-        "description": "The future largely depends on our capacity to reduce emissions, adjust to a changing environment, and make environmental sustainability a top priority."
+        "years": "2071-2100",
+        "description": "The future largely depends on our capacity to reduce emissions, adjust to a changing environment, and make environmental sustainability a top priority.",
+        "buttonOutline": true
     }
 }
