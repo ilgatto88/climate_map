@@ -14,6 +14,7 @@ describe("MapFooter Component", () => {
   beforeEach(() => {
     store = mockStore({
       categoryHandler: { value: "temperature" },
+      scenarioBarHandler: { value: false },
     });
   });
 

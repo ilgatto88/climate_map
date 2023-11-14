@@ -1,7 +1,7 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
 import { Provider } from "react-redux";
-import { describe, expect, it } from "@jest/globals";
+import { describe, expect, it, beforeEach } from "@jest/globals";
 import configureStore from "redux-mock-store";
 import ScenarioBar from "../../src/components/ScenarioBar";
 import "@testing-library/jest-dom";
@@ -15,7 +15,14 @@ const TIMEPERIODS = Object.keys(TIMEPERIOD_JSON).map(
 );
 
 const mockStore = configureStore();
-const store = mockStore({}); // Replace with your Redux store configuration
+let store;
+
+beforeEach(() => {
+  store = mockStore({
+    categoryHandler: { value: "temperature" },
+    scenarioBarHandler: { value: false },
+  });
+});
 
 describe("ScenarioBar component", () => {
   it("renders correctly", () => {
