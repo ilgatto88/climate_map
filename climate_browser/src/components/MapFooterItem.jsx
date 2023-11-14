@@ -61,7 +61,12 @@ export default function MapFooterItem({ categoryName }) {
             dispatch(changeCategory(null));
           }}
         >
-          {CategoryData[categoryName].name}{" "}
+          <div className="category-title">
+            <div className="category-text">
+              {CategoryData[categoryName].name}
+            </div>{" "}
+            <div className="category-title-close">{"\u2BBD"}</div>
+          </div>
         </li>
         {CategoryData[categoryName].items.map((item) => (
           <button

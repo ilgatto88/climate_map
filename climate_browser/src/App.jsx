@@ -7,21 +7,19 @@ import Info from "./components/Info";
 import About from "./components/About";
 
 import "./App.css";
-import ScenarioBar from "./components/ScenarioBar";
 
 function App() {
   return (
-    <>
-      <div className="app">
-        <Info />
-        <About />
+    <div className="app">
+      <Info />
+      <About />
+      <div className="navbar-sidebar">
         <NavBar />
-        <Map />
-        <ScenarioBar />
-        <MapFooter />
+        <OffCanvasLineDiag />
       </div>
-      <OffCanvasLineDiag />
-    </>
+      <Map />
+      <MapFooter />
+    </div>
   );
 }
 

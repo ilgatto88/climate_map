@@ -1,21 +1,49 @@
 @import url("colors.css");
 
+.mobile-menubar-container {
+    position: relative;
+}
+
+.mobile-menubar {
+    display: none;
+    text-align: center;
+    background-color: var(--darkgrey);
+    font-size: 1.5rem;
+    color: var(--white);
+}
+
 .map-footer {
-    display: block;
     background-color: var(--darkgrey);
     color: var(--white);
     text-align: center;
-    padding: 10px 0px 10px 0px;
-    position: relative;
-    height: auto;
-    width: 100%;
-    z-index: 1000;
+    padding: .75rem 0rem;
     border-top: 1px solid var(--lightgrey);
+    z-index: 1;
 }
 
 .parameter-footer {
     display: flex;
     justify-content: center;
-    align-items: center;
-    gap: 20px;
+    align-items: top;
+    gap: 1.5rem;
+}
+
+@media (orientation: portrait) or (width < 1000px) {
+    .map-footer {
+        padding: 1rem;
+    }
+
+    .parameter-footer {
+        justify-content: space-evenly;
+        gap: 1rem;
+    }
+
+    .mobile-menubar-container {
+        position: relative;
+    }
+
+    .mobile-menubar {
+        display: block;
+        cursor: pointer;
+    }
 }

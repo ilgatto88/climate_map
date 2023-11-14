@@ -9,6 +9,7 @@ import categoryHandler from "./features/categorySlice";
 import historicalDataHandler from "./features/historicalDataSlice";
 import infoHandler from "./features/infoSlice";
 import aboutHandler from "./features/aboutSlice";
+import scenarioBarHandler from "./features/scenarioBarSlice";
 
 export default configureStore({
   reducer: {
@@ -22,5 +23,6 @@ export default configureStore({
     historicalDataHandler,
     infoHandler,
     aboutHandler,
+    scenarioBarHandler,
   },
 });

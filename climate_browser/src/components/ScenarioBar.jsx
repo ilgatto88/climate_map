@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "../styles/ScenarioBar.css";
 import { activateButton } from "../utils/cosmetics";
 
@@ -17,6 +17,10 @@ const TIMEPERIODS = Object.keys(TIMEPERIOD_JSON).map(
 function ScenarioBar() {
   const dispatch = useDispatch();
 
+  const scenarioBarState = useSelector(
+    (state) => state.scenarioBarHandler.value
+  );
+
   const handleScenarioButtonClick = (scenario, buttonId) => {
     dispatch(changeScenario(scenario));
     activateButton("scenario-buttons", buttonId);
@@ -28,7 +32,11 @@ function ScenarioBar() {
   };
 
   return (
-    <div className="scenario-timeperiod-bar-container">
+    <div
+      className={`scenario-timeperiod-bar-container ${
+        scenarioBarState ? "visible" : ""
+      }`}
+    >
       <div className="scenario-timeperiod-bar">
         <div className="scenario-col">
           <div className="scenario-timeperiod-title">Climate Change</div>

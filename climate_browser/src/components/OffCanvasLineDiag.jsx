@@ -1,7 +1,10 @@
-import { faCaretDown, faCaretUp } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCaretDown,
+  faCaretUp,
+  faXmark,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
-import Offcanvas from "react-bootstrap/Offcanvas";
 import { Line } from "react-chartjs-2";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -100,13 +103,6 @@ export default function OffCanvasLineDiag() {
     return <div>Loading scenario data...</div>;
   }
 
-  if (sidebarState) {
-    const offCanvasCloseButton = document.querySelector(".btn-close");
-    if (offCanvasCloseButton !== null) {
-      offCanvasCloseButton.classList.add("btn-close-yellow");
-    }
-  }
-
   const chartData = prepareLineDiagramData(
     municipalityHistoricalData,
     municipalityScenarioData,
@@ -156,32 +152,31 @@ export default function OffCanvasLineDiag() {
   });
 
   return (
-    <Offcanvas
-      show={sidebarState}
-      onHide={() => dispatch(close())}
-      placement="end"
-      backdrop={false}
-      scroll
-    >
-      <Offcanvas.Header closeButton>
-        <Offcanvas.Title>
+    <div className={`sidebar ${sidebarState ? "sidebar-open" : ""}`}>
+      <div className="sidebar-header ms-3">
+        <div className="sidebar-title">
           <div className="d-flex flex-column">
             <h3 className="text-main-name">Municipality</h3>
             <h1 className="text-main-value text-uppercase">
               {municipalityMeta.name}
             </h1>
           </div>
-        </Offcanvas.Title>
-      </Offcanvas.Header>
+        </div>
+        <div className="closeArea">
+          <button type="button" onClick={() => dispatch(close())}>
+            <FontAwesomeIcon icon={faXmark} />
+          </button>
+        </div>
+      </div>
       <OffCanvasSubHeader
         historicalValue={historicalValue}
         ensembleValue={ensembleValue}
         climateChangeValue={climateChangeValue}
         changeText={changeText}
       />
-      <Offcanvas.Body>
+      <div className="sidebar-body">
         <Line options={chartOptions} data={chartData} />
-      </Offcanvas.Body>
-    </Offcanvas>
+      </div>
+    </div>
   );
 }

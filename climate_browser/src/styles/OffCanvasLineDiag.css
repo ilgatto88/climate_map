@@ -1,20 +1,31 @@
 @import url("colors.css");
 
-.offcanvas.offcanvas-end {
-     width: 500px !important;
-     height: 83.2%;
+.sidebar {
+     display: none;
+     position: absolute;
+     right: 0;
+     top: 100%;
+     padding: 10px 0px 10px 0px;
+     width: 500px;
+     max-height: 80vh;
+     transition: width 0.5s ease-in;
      background-color: var(--grey_transparent);
      color: var(--white);
      border-color: var(--white);
-     top: 8.4% !important;
+     box-sizing: border-box;
      overflow-y: scroll !important;
+     z-index: 3;
 }
 
-.offcanvas-body {
+.sidebar-open {
+     display: block;
+}
+
+.sidebar-body {
      overflow: visible;
 }
 
-.offcanvas-header {
+.sidebar-header {
      padding-bottom: 0;
 }
 
@@ -83,4 +94,11 @@ canvas {
 
 .btn-close-yellow {
      background-color: var(--yellow) !important;
+}
+
+
+@media (orientation: portrait) or (width < 1000px) {
+     .sidebar {
+          max-width: 350px;
+     }
 }

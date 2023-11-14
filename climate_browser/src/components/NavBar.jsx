@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
@@ -33,36 +34,35 @@ function NavBar() {
   };
 
   return (
-    <div className="navbar-main">
-      <nav role="navigation" className="menu" onClick={toggleMenu}>
-        <div title="Menu">
+    <nav className="navbar">
+      <div className="menu">
+        <div className="menu-btn" onClick={toggleMenu}>
           <div id="menu-title">MENU</div>
           <FontAwesomeIcon icon={faBars} />
         </div>
         <div className={`menu-wrapper ${isMenuOpen ? "open" : ""}`}>
-          <ul>
-            <a
-              className="menu-item"
-              href="http://127.0.0.1:8000/docs"
-              target="_blank"
-              rel="noreferrer"
-            >
-              ClimATe API
-            </a>
-            <a className="menu-item" href="/" target="_blank" rel="noreferrer">
-              ClimATe Atlas
-            </a>
-            <div
-              className="menu-item"
-              onClick={() => {
-                toggleAbout();
-              }}
-            >
-              About the Atlas
-            </div>
-          </ul>
+          <a
+            className="menu-item"
+            href="http://127.0.0.1:8000/docs"
+            target="_blank"
+            rel="noreferrer"
+          >
+            ClimATe API
+          </a>
+          <a className="menu-item" href="/" target="_blank" rel="noreferrer">
+            ClimATe Atlas
+          </a>
+          <a
+            className="menu-item"
+            href="#"
+            onClick={() => {
+              toggleAbout();
+            }}
+          >
+            About the Atlas
+          </a>
         </div>
-      </nav>
+      </div>
       <div
         className="biginfo"
         onClick={() => {
@@ -73,17 +73,24 @@ function NavBar() {
         <FontAwesomeIcon icon={faCircleInfo} />
       </div>
       <Legend parameter={parameterName} />
-      <div className="mapinfo">
-        <div className="parameter">{ParameterData[parameterName].name}</div>
-        <div>
-          {ScenarioData[scenario].primaryName}{" "}
-          <FontAwesomeIcon icon={faArrowRight} />{" "}
-          {ScenarioData[scenario].secondaryName} <i className="spacer"> • </i>{" "}
-          {futurePeriod}
+      <div className="title">
+        <div className="title-upper">{ParameterData[parameterName].name}</div>
+        <div className="title-lower">
+          <div className="title-scenario-primary">
+            {ScenarioData[scenario].primaryName}
+          </div>
+          <div className="title-scenario-secondary">
+            <FontAwesomeIcon icon={faArrowRight} />
+            {ScenarioData[scenario].secondaryName}
+          </div>{" "}
+          <div className="title-future-period">
+            {" "}
+            <i className="spacer"> • </i> {futurePeriod}
+          </div>
         </div>
       </div>
       <div className="spacer" />
-    </div>
+    </nav>
   );
 }
 

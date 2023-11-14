@@ -1,46 +1,46 @@
 @import url("colors.css");
 
-.navbar-main {
+.navbar {
     display: flex;
-    align-items: top;
+    justify-content: center;
+    align-items: start;
     background-color: var(--darkgrey);
     color: white;
-    box-sizing: border-box;
     font-weight: 400;
     text-align: center;
-    padding: 16px 0px 5px 0px;
+    padding: 1rem 0rem .3rem 0rem;
     border-bottom: 1px solid var(--lightgrey);
+    overflow: visible;
+    z-index: 3;
 }
 
 .menu {
+    position: relative;
     box-sizing: border-box;
     cursor: pointer;
-    width: 60px;
-    height: 60px;
+    width: 4rem;
+    height: 4rem;
     margin-right: 30px;
+    z-index: 10;
 }
 
 .open {
-    display: block !important;
+    display: flex !important;
 }
 
 .menu-wrapper {
     display: none;
-    background-color: var(--darkgrey);
+    flex-direction: column;
     position: absolute;
-    top: 82px;
-    z-index: 99999;
-    width: 200px;
+    top: 100%;
+    left: 0;
+    min-width: 200px;
+    text-decoration: none;
+    background-color: var(--darkgrey);
     margin: 0;
     padding: 0;
     text-align: left;
-}
-
-.menu-wrapper>ul {
-    list-style-type: none;
-    width: auto;
-    padding: 0;
-    margin: 0
+    z-index: 2;
 }
 
 .menu-item {
@@ -56,7 +56,6 @@
     background-color: var(--yellow);
 }
 
-
 .biginfo {
     margin-right: 30px;
 }
@@ -70,16 +69,52 @@
     color: var(--white);
 }
 
-.mapinfo {
+.title {
     font-weight: 500;
     flex-grow: 1;
 }
 
-.parameter {
+.title-upper {
     font-size: 1.3rem;
+}
+
+.title-lower {
+    display: flex;
+    justify-content: center;
+    font-size: .9rem;
+    gap: .5rem;
+}
+
+.title-scenario-primary {
+    display: flex;
+}
+
+.title-scenario-secondary {
+    display: flex;
+    gap: .5rem;
 }
 
 .spacer {
     flex-grow: 1;
     margin: 0 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    .title-scenario-secondary {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 300px) {
+    .title-scenario-secondary {
+        display: none;
+    }
+
+    .title-upper {
+        font-size: 1.0rem;
+    }
+
+    .title-lower {
+        font-size: .625rem;
+    }
 }

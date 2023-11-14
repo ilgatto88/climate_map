@@ -19,7 +19,7 @@
 
 .legend-min,
 .legend-max {
-    line-height: 15px;
+    line-height: 1rem;
     color: var(--white);
 }
 
@@ -28,4 +28,11 @@
     width: 175px;
     height: 15px;
     border: none;
+}
+
+@media (orientation: portrait) or (width < 1000px) {
+
+    .navbar>.legend {
+        display: none;
+    }
 }

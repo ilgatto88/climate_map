@@ -1,11 +1,7 @@
-.map-container {
-    width: 100%;
-    height: 100%;
-}
-
 .leaflet-container {
-    width: 100%;
-    height: 91%;
+    display: flex;
+    flex: 1;
+    z-index: 1;
 }
 
 .osmlayer {
